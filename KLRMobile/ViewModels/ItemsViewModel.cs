@@ -13,8 +13,10 @@ namespace KLRMobile.ViewModels
     public class ItemsViewModel : BaseViewModel
     {
         private Item _selectedItem;
+        private County _selectedCounty;
 
         public ObservableCollection<Item> Items { get; }
+        public ObservableCollection<County> Counties { get; }
         public Command LoadItemsCommand { get; }
         public Command AddItemCommand { get;  }
         public Command<Item> ItemTapped { get; }
@@ -23,6 +25,7 @@ namespace KLRMobile.ViewModels
         {
             Title = "Browse";
             Items = new ObservableCollection<Item>();
+            Counties = new ObservableCollection<County>();
             LoadItemsCommand = new Command(async () => await ExecuteLoadItemsCommand());
 
             ItemTapped = new Command<Item>(OnItemSelected);
@@ -66,6 +69,14 @@ namespace KLRMobile.ViewModels
             {
                 SetProperty(ref _selectedItem, value);
                 OnItemSelected(value);
+            }
+        }
+
+        public County SelectedCounty {
+            get => _selectedCounty;
+            set
+            {
+                SetProperty(ref _selectedCounty, value);
             }
         }
 
