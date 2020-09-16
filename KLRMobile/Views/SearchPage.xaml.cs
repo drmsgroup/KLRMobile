@@ -12,7 +12,6 @@ namespace KLRMobile.Views
         public SearchPage()
         {
             InitializeComponent();
-            
         }
     }
 }
