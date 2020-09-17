@@ -13,5 +13,9 @@ namespace KLRMobile.Views
         {
             InitializeComponent();
         }
+        private void Back_Clicked(object sender, EventArgs e)
+        {
+            Application.Current.MainPage = new NavigationPage(new LaunchScreen());
+        }
     }
 }

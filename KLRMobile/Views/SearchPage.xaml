@@ -4,7 +4,11 @@
              x:Class="KLRMobile.Views.SearchPage"
              xmlns:vm="clr-namespace:KLRMobile.ViewModels"
              Title="{Binding Title}">
-    
+
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Back" Clicked="Back_Clicked" />
+    </ContentPage.ToolbarItems>
+
     <ContentPage.BindingContext>
         <vm:SearchViewModel />
     </ContentPage.BindingContext>
