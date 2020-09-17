@@ -14,5 +14,10 @@ namespace KLRMobile.Views
             InitializeComponent();
             BindingContext = new LoginViewModel();
         }
+
+        private void LoginButton_OnClicked(object sender, EventArgs e)
+        {
+            Application.Current.MainPage = new NavigationPage(new LaunchScreen());
+        }
     }
 } 

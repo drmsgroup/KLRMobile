@@ -6,8 +6,8 @@ using Xamarin.Forms;
 
 namespace KLRMobile.ViewModels
 {
-    public class LoginViewModel : BaseViewModel
+    public class LaunchScreenViewModel : BaseViewModel
     {
-        public LoginViewModel() { }
+        public LaunchScreenViewModel() {}
     }
 }
