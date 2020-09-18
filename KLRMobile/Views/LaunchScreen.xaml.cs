@@ -22,7 +22,7 @@ namespace KLRMobile.Views
 
         private void TitleLienButton_OnClicked(object sender, EventArgs e)
         {
-            Application.Current.MainPage = new NavigationPage(new SearchPage());
+            Application.Current.MainPage = new NavigationPage(new TitleLienSearch());
         }
 
         private void MarriageLicneseButton_OnClicked(object sender, EventArgs e)
