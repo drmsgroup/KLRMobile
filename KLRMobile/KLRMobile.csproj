@@ -14,6 +14,9 @@
     <Compile Update="Views\LaunchScreen.xaml.cs">
       <DependentUpon>LaunchScreen.xaml</DependentUpon>
     </Compile>
+    <Compile Update="Views\LandRecordsSearch.xaml.cs">
+      <DependentUpon>LandRecordsSearch.xaml</DependentUpon>
+    </Compile>
     <Compile Update="Views\TitleLienSearch.xaml.cs">
       <DependentUpon>TitleLienSearch.xaml</DependentUpon>
     </Compile>

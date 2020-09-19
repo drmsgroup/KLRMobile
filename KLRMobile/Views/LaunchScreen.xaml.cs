@@ -17,7 +17,7 @@ namespace KLRMobile.Views
 
         private void LandRecordsButton_OnClicked(object sender, EventArgs e)
         {
-            Application.Current.MainPage = new NavigationPage(new SearchPage());
+            Application.Current.MainPage = new NavigationPage(new LandRecordsSearch());
         }
 
         private void TitleLienButton_OnClicked(object sender, EventArgs e)

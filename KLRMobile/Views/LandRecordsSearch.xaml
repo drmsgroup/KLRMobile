@@ -1,0 +1,52 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="KLRMobile.Views.LandRecordsSearch"
+             xmlns:vm="clr-namespace:KLRMobile.ViewModels" xmlns:sys="clr-namespace:System;assembly=mscorlib"
+             Title="{Binding Title}"
+             xmlns:local="clr-namespace:KLRMobile.Controls"
+             BackgroundColor="#4D4B50">
+
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Back" Clicked="Back_Clicked" />
+    </ContentPage.ToolbarItems>
+
+    <ContentPage.BindingContext>
+        <vm:SearchViewModel />
+    </ContentPage.BindingContext>
+    
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Color x:Key="Accent">#96d1ff</Color>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <ScrollView Grid.Row="1">
+            <StackLayout Orientation="Vertical" Padding="30,24,30,24" Spacing="10">
+                <Entry Text="{Binding Text, Mode=TwoWay}" FontSize="Medium" Placeholder="Last Name" />
+                <Entry Text="{Binding Text, Mode=TwoWay}" FontSize="Medium" Placeholder="First Name" />
+                <Entry Text="{Binding Text, Mode=TwoWay}" FontSize="Medium" Placeholder="Book" />
+                <Entry Text="{Binding Text, Mode=TwoWay}" FontSize="Medium" Placeholder="Page" />
+                <local:ExtendedDatePicker PlaceHolder="Start Date" />
+                <local:ExtendedDatePicker PlaceHolder="End Date" />
+                <Entry Text="{Binding Text, Mode=TwoWay}" FontSize="Medium" Placeholder="Order" />
+                <Picker Title="Instrument Type" />
+                <Picker Title="Book Name" />
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition />
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
+                    <Button Text="Search" Grid.Column="0" BackgroundColor="Green" />
+                    <Button Text="Reset" Grid.Column="1" BackgroundColor="LightGray" TextColor="Black" />
+                </Grid>
+            </StackLayout>
+        </ScrollView>
+    </Grid>
+
+</ContentPage>
