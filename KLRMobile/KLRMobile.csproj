@@ -11,6 +11,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Update="Views\MarriageLicenseSearch.xaml.cs">
+      <DependentUpon>MarriageLicenseSearch.xaml</DependentUpon>
+    </Compile>
     <Compile Update="Views\LaunchScreen.xaml.cs">
       <DependentUpon>LaunchScreen.xaml</DependentUpon>
     </Compile>
