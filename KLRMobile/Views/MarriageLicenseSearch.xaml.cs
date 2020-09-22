@@ -17,5 +17,9 @@ namespace KLRMobile.Views
         {
             Application.Current.MainPage = new NavigationPage(new LaunchScreen());
         }
+        private void SearchClicked(object sender, EventArgs e)
+        {
+            Application.Current.MainPage = new NavigationPage(new SearchResults("Marriage"));
+        }
     }
 }

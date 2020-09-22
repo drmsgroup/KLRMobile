@@ -42,7 +42,7 @@
                         <ColumnDefinition />
                         <ColumnDefinition />
                     </Grid.ColumnDefinitions>
-                    <Button Text="Search" Grid.Column="0" BackgroundColor="Green" />
+                    <Button Text="Search" Grid.Column="0" BackgroundColor="Green" Clicked="SearchClicked" />
                     <Button Text="Reset" Grid.Column="1" BackgroundColor="LightGray" TextColor="Black" />
                 </Grid>
             </StackLayout>

@@ -10,25 +10,25 @@ using KLRMobile.Views;
 
 namespace KLRMobile.ViewModels
 {
-    public class ItemsViewModel : BaseViewModel
+    public class SearchResultsViewModel : BaseViewModel
     {
-        private Item _selectedItem;
+        private ResultItem _selectedItem;
         private County _selectedCounty;
 
-        public ObservableCollection<Item> Items { get; }
+        public ObservableCollection<ResultItem> Items { get; }
         public ObservableCollection<County> Counties { get; }
         public Command LoadItemsCommand { get; }
         public Command AddItemCommand { get;  }
-        public Command<Item> ItemTapped { get; }
+        public Command<ResultItem> ItemTapped { get; }
 
-        public ItemsViewModel()
+        public SearchResultsViewModel()
         {
-            Title = "Browse";
-            Items = new ObservableCollection<Item>();
+            Title = "Results";
+            Items = new ObservableCollection<ResultItem>();
             Counties = new ObservableCollection<County>();
             LoadItemsCommand = new Command(async () => await ExecuteLoadItemsCommand());
 
-            ItemTapped = new Command<Item>(OnItemSelected);
+            ItemTapped = new Command<ResultItem>(OnItemSelected);
 
             AddItemCommand = new Command(OnAddItem);
         }
@@ -62,7 +62,7 @@ namespace KLRMobile.ViewModels
             SelectedItem = null;
         }
 
-        public Item SelectedItem
+        public ResultItem SelectedItem
         {
             get => _selectedItem;
             set
@@ -85,7 +85,7 @@ namespace KLRMobile.ViewModels
             await Shell.Current.GoToAsync(nameof(NewItemPage));
         }
 
-        async void OnItemSelected(Item item)
+        async void OnItemSelected(ResultItem item)
         {
             if (item == null)
                 return;
