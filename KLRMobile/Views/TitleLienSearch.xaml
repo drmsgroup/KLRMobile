@@ -31,17 +31,18 @@
                 <Entry Text="{Binding Text, Mode=TwoWay}" FontSize="Medium" Placeholder="Debtor Last" />
                 <Entry Text="{Binding Text, Mode=TwoWay}" FontSize="Medium" Placeholder="Debtor First" />
                 <Entry Text="{Binding Text, Mode=TwoWay}" FontSize="Medium" Placeholder="Holder Last" />
-                <Entry Text="{Binding Text, Mode=TwoWay}" FontSize="Medium" Placeholder="Debtor First" />
+                <Entry Text="{Binding Text, Mode=TwoWay}" FontSize="Medium" Placeholder="Holder First" />
                 <local:ExtendedDatePicker PlaceHolder="Start Date" />
                 <local:ExtendedDatePicker PlaceHolder="End Date" />
                 <Picker Title="Agreement Type" />
                 <Entry Text="{Binding Text, Mode=TwoWay}" FontSize="Medium" Placeholder="File Number"/>
+                <Entry Text="{Binding Text, Mode=TwoWay}" FontSize="Medium" Placeholder="VIN Number"/>
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition />
                         <ColumnDefinition />
                     </Grid.ColumnDefinitions>
-                    <Button Text="Search" Grid.Column="0" BackgroundColor="Green" />
+                    <Button Text="Search" Grid.Column="0" BackgroundColor="Green" Clicked="SearchClicked" />
                     <Button Text="Reset" Grid.Column="1" BackgroundColor="LightGray" TextColor="Black" />
                 </Grid>
             </StackLayout>

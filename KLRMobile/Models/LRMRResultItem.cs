@@ -2,7 +2,7 @@
 
 namespace KLRMobile.Models
 {
-    public class ResultItem
+    public class LRMRResultItem
     {
         public string Id { get; set; }
         public string FirstParty { get; set; }
