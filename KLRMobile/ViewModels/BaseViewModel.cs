@@ -12,7 +12,7 @@ namespace KLRMobile.ViewModels
 {
     public class BaseViewModel : INotifyPropertyChanged
     {
-        public IDataStore<Item> DataStore => DependencyService.Get<IDataStore<Item>>();
+        public IDataStore<ResultItem> DataStore => DependencyService.Get<IDataStore<ResultItem>>();
 
         bool isBusy = false;
         public bool IsBusy
