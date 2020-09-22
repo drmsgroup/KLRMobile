@@ -10,25 +10,25 @@ using KLRMobile.Views;
 
 namespace KLRMobile.ViewModels
 {
-    public class SearchResultsViewModel : BaseViewModel
+    public class TitleLienSearchResultsViewModel : BaseViewModel
     {
-        private LRMRResultItem _selectedItem;
+        private TitleLienResultItem _selectedItem;
         private County _selectedCounty;
 
-        public ObservableCollection<LRMRResultItem> Items { get; }
+        public ObservableCollection<TitleLienResultItem> Items { get; }
         public ObservableCollection<County> Counties { get; }
         public Command LoadItemsCommand { get; }
         public Command AddItemCommand { get;  }
-        public Command<LRMRResultItem> ItemTapped { get; }
+        public Command<TitleLienResultItem> ItemTapped { get; }
 
-        public SearchResultsViewModel()
+        public TitleLienSearchResultsViewModel()
         {
             Title = "Results";
-            Items = new ObservableCollection<LRMRResultItem>();
+            Items = new ObservableCollection<TitleLienResultItem>();
             Counties = new ObservableCollection<County>();
             LoadItemsCommand = new Command(async () => await ExecuteLoadItemsCommand());
 
-            ItemTapped = new Command<LRMRResultItem>(OnItemSelected);
+            ItemTapped = new Command<TitleLienResultItem>(OnItemSelected);
 
             AddItemCommand = new Command(OnAddItem);
         }
@@ -40,7 +40,7 @@ namespace KLRMobile.ViewModels
             try
             {
                 Items.Clear();
-                var items = await DataStore.GetItemsAsync(true);
+                var items = await TitleLienDataStore.GetItemsAsync(true);
                 foreach (var item in items)
                 {
                     Items.Add(item);
@@ -62,7 +62,7 @@ namespace KLRMobile.ViewModels
             SelectedItem = null;
         }
 
-        public LRMRResultItem SelectedItem
+        public TitleLienResultItem SelectedItem
         {
             get => _selectedItem;
             set
@@ -85,7 +85,7 @@ namespace KLRMobile.ViewModels
             await Shell.Current.GoToAsync(nameof(NewItemPage));
         }
 
-        async void OnItemSelected(LRMRResultItem item)
+        async void OnItemSelected(TitleLienResultItem item)
         {
             if (item == null)
                 return;

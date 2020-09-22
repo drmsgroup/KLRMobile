@@ -11,7 +11,7 @@ namespace KLRMobile.Views
 {
     public partial class NewItemPage : ContentPage
     {
-        public ResultItem Item { get; set; }
+        public LRMRResultItem Item { get; set; }
 
         public NewItemPage()
         {

@@ -15,7 +15,7 @@ namespace KLRMobile.Views
 {
     public partial class SearchResults : ContentPage
     {
-        SearchResultsViewModel _viewModel;
+        readonly SearchResultsViewModel _viewModel;
         private string SearchType { get; set; }
 
         public SearchResults(string type)
