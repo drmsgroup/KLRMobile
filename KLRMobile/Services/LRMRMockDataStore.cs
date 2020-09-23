@@ -12,13 +12,13 @@ namespace KLRMobile.Services
 
         public LRMRMockDataStore() => items = new List<LRMRResultItem>()
         {
-            new LRMRResultItem { Id = Guid.NewGuid().ToString(), FirstParty = "Smith, Smith", SecondParty="John, Smith", BookNumber="20", PageNumber="10", DateFiled=DateTime.Parse("10/12/2019") },
-            new LRMRResultItem { Id = Guid.NewGuid().ToString(), FirstParty = "Johnson, Bob", SecondParty="Johnson, Jack", BookNumber="30", PageNumber="20", DateFiled=DateTime.Parse("8/12/2019") },
-            new LRMRResultItem { Id = Guid.NewGuid().ToString(), FirstParty = "Abrams, JJ", SecondParty="Abrams, John", BookNumber="40", PageNumber="30", DateFiled=DateTime.Parse("7/12/2019") },
-            new LRMRResultItem { Id = Guid.NewGuid().ToString(), FirstParty = "Dillon, Eddie", SecondParty="Dillon, Beth", BookNumber="50", PageNumber="40", DateFiled=DateTime.Parse("6/12/2019") },
-            new LRMRResultItem { Id = Guid.NewGuid().ToString(), FirstParty = "Gurrola, Ben", SecondParty="Gurrola, Capulan",BookNumber="60", PageNumber="50", DateFiled=DateTime.Parse("5/12/2019") },
-            new LRMRResultItem { Id = Guid.NewGuid().ToString(), FirstParty = "Vance, Richard", SecondParty="Vance, Betty", BookNumber="70", PageNumber="60", DateFiled=DateTime.Parse("4/12/2019") },
-            new LRMRResultItem { Id = Guid.NewGuid().ToString(), FirstParty = "LongLastNameExample, LongFirstName", SecondParty="LongLastNameExample, LongFirstName", BookNumber="70", PageNumber="60", DateFiled=DateTime.Parse("4/12/2019") }
+            new LRMRResultItem { Id = Guid.NewGuid().ToString(), FirstParty = "Smith, Smith", SecondParty="John, Smith", BookNumber="20", BookName="MARRIAGE", InstrumentType="MARRIAGE LICENSE", PageNumber="10", DateFiled=DateTime.Parse("10/12/2019"), LastUpdated=DateTime.Parse("10/12/2019"), UpdatedBy="red", Description="test", IndexedBy="red" },
+            new LRMRResultItem { Id = Guid.NewGuid().ToString(), FirstParty = "Johnson, Bob", SecondParty="Johnson, Jack", BookNumber="30", BookName="LAND", InstrumentType="DEED", PageNumber="20", DateFiled=DateTime.Parse("8/12/2019"), LastUpdated=DateTime.Parse("10/12/2019"), UpdatedBy="red", Description="test", IndexedBy="red" },
+            new LRMRResultItem { Id = Guid.NewGuid().ToString(), FirstParty = "Abrams, JJ", SecondParty="Abrams, John", BookNumber="40", BookName="LAND", InstrumentType="DEED", PageNumber="30", DateFiled=DateTime.Parse("7/12/2019"), LastUpdated=DateTime.Parse("10/12/2019"), UpdatedBy="red", Description="test", IndexedBy="red" },
+            new LRMRResultItem { Id = Guid.NewGuid().ToString(), FirstParty = "Dillon, Eddie", SecondParty="Dillon, Beth", BookNumber="50", BookName="LAND", InstrumentType="DEED", PageNumber="40", DateFiled=DateTime.Parse("6/12/2019"), LastUpdated=DateTime.Parse("10/12/2019"), UpdatedBy="red", Description="test", IndexedBy="red" },
+            new LRMRResultItem { Id = Guid.NewGuid().ToString(), FirstParty = "Gurrola, Ben", SecondParty="Gurrola, Capulan",BookNumber="60", BookName="MARRIAGE", InstrumentType="MARRIAGE LICENSE", PageNumber="50", DateFiled=DateTime.Parse("5/12/2019"), LastUpdated=DateTime.Parse("10/12/2019"), UpdatedBy="red", Description="test", IndexedBy="red" },
+            new LRMRResultItem { Id = Guid.NewGuid().ToString(), FirstParty = "Vance, Richard", SecondParty="Vance, Betty", BookNumber="70", BookName="MARRIAGE", InstrumentType="MARRIAGE LICENSE", PageNumber="60", DateFiled=DateTime.Parse("4/12/2019"), LastUpdated=DateTime.Parse("10/12/2019"), UpdatedBy="red", Description="test", IndexedBy="red" },
+            new LRMRResultItem { Id = Guid.NewGuid().ToString(), FirstParty = "LongLastNameExample, LongFirstName", SecondParty="LongLastNameExample, LongFirstName", BookName="LAND", InstrumentType="DEED", BookNumber="70", PageNumber="60", DateFiled=DateTime.Parse("4/12/2019"), LastUpdated=DateTime.Parse("10/12/2019"), UpdatedBy="red", Description="test", IndexedBy="red" }
         };
 
         public async Task<LRMRResultItem> GetItemAsync(string id)
