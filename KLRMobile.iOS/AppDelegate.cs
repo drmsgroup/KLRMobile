@@ -12,6 +12,7 @@ namespace KLRMobile
 		{
 			// affects all UISwitch controls in the app
 			UISwitch.Appearance.OnTintColor = UIColor.FromRGB(0x91, 0xCA, 0x47);
+			Forms.SetFlags("Expander_Experimental");
 
 			Forms.Init();
 			LoadApplication(new App());
