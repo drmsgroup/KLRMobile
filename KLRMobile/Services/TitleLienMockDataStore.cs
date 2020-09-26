@@ -11,7 +11,7 @@ namespace KLRMobile.Services
         readonly List<TitleLienResultItem> items;
         public TitleLienMockDataStore() => items = new List<TitleLienResultItem>()
         {
-            new TitleLienResultItem { Id = Guid.NewGuid().ToString(), Debtor = "Smith, Smith", LienHolder ="John, Smith", VINNumber="12345678901234567", Description="this is a description", DateFiled=DateTime.Parse("10/12/2019"), FileNumber="20", Released=DateTime.Parse("10/12/2020")  },
+            new TitleLienResultItem { Id = Guid.NewGuid().ToString(), Debtor = "Smith, Smith", LienHolder ="John, Smith", TitleNumber="1234567890", VINNumber="12345678901234567", Description="this is a description", DateFiled=DateTime.Parse("10/12/2019"), LastUpdated=DateTime.Parse("10/12/2019"), FileNumber="20", SecurityType="Test", SecurityId="1234567890" },
         };
         public async Task<TitleLienResultItem> GetItemAsync(string id)
         {
