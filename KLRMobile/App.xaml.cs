@@ -11,6 +11,8 @@ namespace KLRMobile
 
         public App ()
         {
+            //Register Syncfusion license
+            Syncfusion.Licensing.SyncfusionLicenseProvider.RegisterLicense("MzIyOTMxQDMxMzgyZTMyMmUzMG80RHpnOU5vMzVwNzczYkxsUDNFelFHU0pEd3F4NkQ0S2dQclpNdndEcFU9");
             InitializeComponent();
 
             DependencyService.Register<LRMRMockDataStore>();

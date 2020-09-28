@@ -13,8 +13,10 @@ namespace KLRMobile
 			// affects all UISwitch controls in the app
 			UISwitch.Appearance.OnTintColor = UIColor.FromRGB(0x91, 0xCA, 0x47);
 			Forms.SetFlags("Expander_Experimental");
-
 			Forms.Init();
+
+			Syncfusion.SfPdfViewer.XForms.iOS.SfPdfDocumentViewRenderer.Init();
+			Syncfusion.SfRangeSlider.XForms.iOS.SfRangeSliderRenderer.Init();
 			LoadApplication(new App());
 			return base.FinishedLaunching(app, options);
 		}
