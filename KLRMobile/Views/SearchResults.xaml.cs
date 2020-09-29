@@ -26,6 +26,11 @@ namespace KLRMobile.Views
             BindingContext = _viewModel = new SearchResultsViewModel();
         }
 
+        private void ShowPdf(object sender, EventArgs e)
+        {
+            Application.Current.MainPage = new NavigationPage(new PdfViewer());
+        }
+
         protected override void OnAppearing()
         {
             base.OnAppearing();
