@@ -17,6 +17,8 @@ namespace KLRMobile
 
             DependencyService.Register<LRMRMockDataStore>();
             DependencyService.Register<TitleLienMockDataStore>();
+            DependencyService.Register<UserMockDataStore>();
+            DependencyService.Register<ImageMockDataStore>();
 
             MainPage = new AppShell();
         }

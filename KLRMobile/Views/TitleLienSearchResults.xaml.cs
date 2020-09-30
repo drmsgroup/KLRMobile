@@ -10,6 +10,7 @@ using Xamarin.Forms.Xaml;
 using KLRMobile.Models;
 using KLRMobile.Views;
 using KLRMobile.ViewModels;
+using KLRMobile.Services;
 
 namespace KLRMobile.Views
 {
@@ -24,9 +25,11 @@ namespace KLRMobile.Views
             BindingContext = _viewModel = new TitleLienSearchResultsViewModel();
         }
 
-        private void ShowPdf(object sender, EventArgs e)
+        private async void ShowPdf(object sender, EventArgs e)
         {
-            Application.Current.MainPage = new NavigationPage(new PdfViewer());
+            var imageDataStore = new ImageMockDataStore();
+            var images = await imageDataStore.GetItemsAsync();
+            Application.Current.MainPage = new NavigationPage(new PdfViewer(images.First().imageStream));
         }
 
         protected override void OnAppearing()

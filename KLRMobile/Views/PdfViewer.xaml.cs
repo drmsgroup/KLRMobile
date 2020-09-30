@@ -1,25 +1,26 @@
 ﻿using System;
-using System.IO;
-using System.Reflection;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using System.IO;
 
 namespace KLRMobile.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class PdfViewer : ContentPage
     {
-        Stream fileStream;
-        public PdfViewer()
+        private Stream fileStream;
+        public PdfViewer(Stream docStream)
         {
             InitializeComponent();
+            fileStream = docStream;
         }
 
         protected override void OnAppearing()
         {
             base.OnAppearing();
-            fileStream = typeof(App).GetTypeInfo().Assembly.GetManifestResourceStream("KLRMobile.Assets.mortgage.pdf");
+            
             ////Load the PDF
+            ///
             pdfViewerControl.LoadDocument(fileStream);
         }
 
