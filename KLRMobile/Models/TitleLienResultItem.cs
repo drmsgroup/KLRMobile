@@ -4,7 +4,7 @@ namespace KLRMobile.Models
 {
     public class TitleLienResultItem
     {
-        public string Id { get; set; }
+        public int Id { get; set; }
         public string Debtor { get; set; }
         public string LienHolder { get; set; }
         public string FileNumber { get; set; }

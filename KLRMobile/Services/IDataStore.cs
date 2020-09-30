@@ -6,7 +6,7 @@ namespace KLRMobile.Services
 {
     public interface IDataStore<T>
     {
-        Task<T> GetItemAsync(string id);
+        Task<T> GetItemAsync(int id);
         Task<IEnumerable<T>> GetItemsAsync(bool forceRefresh = false);
     }
 }
