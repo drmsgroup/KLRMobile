@@ -11,7 +11,7 @@ namespace KLRMobile.Services
         readonly List<User> items;
         public UserMockDataStore() => items = new List<User>()
         {
-            new User { Id = Guid.NewGuid().ToString(), EmailAddress = "test@tester.com", Name = "Test Guy"},
+            new User { Id = Guid.NewGuid().ToString(), EmailAddress = "test@tester.com", Name = "Test Guy", Password="123456"},
         };
 
         public Task<User> GetItemAsync(int id)
