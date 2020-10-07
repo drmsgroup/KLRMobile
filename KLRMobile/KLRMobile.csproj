@@ -24,6 +24,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Update="Views\SettingsPage.xaml.cs">
+      <DependentUpon>SettingsPage.xaml</DependentUpon>
+    </Compile>
     <Compile Update="Views\TitleLienSearchResults.xaml.cs">
       <DependentUpon>TitleLienSearchResults.xaml</DependentUpon>
     </Compile>
