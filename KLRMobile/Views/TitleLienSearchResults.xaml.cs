@@ -1,14 +1,6 @@
 ﻿using System;
-using System.ComponentModel;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Xamarin.Forms;
-using Xamarin.Forms.Xaml;
-
-using KLRMobile.Models;
-using KLRMobile.Views;
 using KLRMobile.ViewModels;
 using KLRMobile.Services;
 
@@ -18,11 +10,12 @@ namespace KLRMobile.Views
     {
         readonly TitleLienSearchResultsViewModel _viewModel;
 
-        public TitleLienSearchResults()
+        public TitleLienSearchResults(TitleLienSearchResultsViewModel viewModel)
         {
             InitializeComponent();
             
-            BindingContext = _viewModel = new TitleLienSearchResultsViewModel();
+            BindingContext = viewModel;
+            _viewModel = viewModel;
         }
 
         private async void ShowPdf(object sender, EventArgs e)
