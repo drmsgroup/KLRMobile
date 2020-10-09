@@ -12,7 +12,7 @@
     </ContentPage.ToolbarItems>
 
     <ContentPage.BindingContext>
-        <vm:SearchViewModel />
+        <vm:TitleLienSearchResultsViewModel />
     </ContentPage.BindingContext>
     
     <ContentPage.Resources>
@@ -28,7 +28,7 @@
         </Grid.RowDefinitions>
         <ScrollView Grid.Row="1">
             <StackLayout Orientation="Vertical" Padding="30,24,30,24" Spacing="10">
-                <Entry Text="{Binding Text, Mode=TwoWay}" FontSize="Medium" Placeholder="Debtor Last" />
+                <Entry Text="{Binding DebtorLast, Mode=TwoWay}" FontSize="Medium" Placeholder="Debtor Last" />
                 <Entry Text="{Binding Text, Mode=TwoWay}" FontSize="Medium" Placeholder="Debtor First" />
                 <Entry Text="{Binding Text, Mode=TwoWay}" FontSize="Medium" Placeholder="Holder Last" />
                 <Entry Text="{Binding Text, Mode=TwoWay}" FontSize="Medium" Placeholder="Holder First" />
@@ -42,7 +42,7 @@
                         <ColumnDefinition />
                         <ColumnDefinition />
                     </Grid.ColumnDefinitions>
-                    <Button Text="Search" Grid.Column="0" BackgroundColor="Green" Clicked="SearchClicked" />
+                    <Button Text="Search" Grid.Column="0" BackgroundColor="Green" Command="{Binding SearchCommand}" />
                     <Button Text="Reset" Grid.Column="1" BackgroundColor="LightGray" TextColor="Black" />
                 </Grid>
             </StackLayout>

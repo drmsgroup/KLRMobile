@@ -35,7 +35,7 @@ namespace KLRMobile.ViewModels
             }
         }
 
-        private async void OnLogin(object obj)
+        private void OnLogin(object obj)
         {
             var user = Items.Where(i => i.EmailAddress.ToLower() == EmailAddress.ToLower() && i.Password == Password).FirstOrDefault();
             if (user != null) {

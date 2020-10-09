@@ -7,6 +7,9 @@ using Xamarin.Forms;
 
 using KLRMobile.Models;
 using KLRMobile.Views;
+using System.Collections.Generic;
+using System.Linq;
+using KLRMobile.Services;
 
 namespace KLRMobile.ViewModels
 {
@@ -15,16 +18,20 @@ namespace KLRMobile.ViewModels
         private TitleLienResultItem _selectedItem;
         private County _selectedCounty;
 
-        public ObservableCollection<TitleLienResultItem> Items { get; }
+        public string DebtorLast { get; set; }
+
+        public List<TitleLienResultItem> Items { get; }
         public ObservableCollection<County> Counties { get; }
         public Command LoadItemsCommand { get; }
         public Command AddItemCommand { get;  }
         public Command<TitleLienResultItem> ItemTapped { get; }
+        public Command SearchCommand { get; }
 
         public TitleLienSearchResultsViewModel()
         {
+            SearchCommand = new Command(OnSearch);
             Title = "Results";
-            Items = new ObservableCollection<TitleLienResultItem>();
+            Items = TitleLienDataStore.GetItemsAsync(true).Result.ToList();
             Counties = new ObservableCollection<County>();
             LoadItemsCommand = new Command(async () => await ExecuteLoadItemsCommand());
 
@@ -77,6 +84,19 @@ namespace KLRMobile.ViewModels
             set
             {
                 SetProperty(ref _selectedCounty, value);
+            }
+        }
+
+        private void OnSearch(object obj)
+        {
+            var debtor = Items.Where(i => i.DebtorLast.ToLower() == DebtorLast.ToLower()).FirstOrDefault();
+            if (debtor != null)
+            {
+                Application.Current.MainPage = new NavigationPage(new TitleLienSearchResults(this));
+            }
+            else
+            {
+                // InvalidLoginIsVisible = true;
             }
         }
 
