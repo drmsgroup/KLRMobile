@@ -17,7 +17,7 @@ namespace KLRMobile.Views
             BindingContext = viewModel;
             _viewModel = viewModel;
         }
-
+        
         private async void ShowPdf(object sender, EventArgs e)
         {
             var imageDataStore = new ImageMockDataStore();
