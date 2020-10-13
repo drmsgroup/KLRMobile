@@ -47,7 +47,8 @@ namespace KLRMobile.ViewModels
             try
             {
                 Items.Clear();
-                var items = await TitleLienDataStore.GetItemsAsync(true);
+                var model = new PagingParameterModel();
+                var items = await TitleLienDataStore.GetItemsPagedAsync(model);
                 foreach (var item in items)
                 {
                     Items.Add(item);

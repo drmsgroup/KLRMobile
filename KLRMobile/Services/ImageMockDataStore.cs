@@ -15,6 +15,13 @@ namespace KLRMobile.Services
             new Image { Id = 10000, imageStream = typeof(App).GetTypeInfo().Assembly.GetManifestResourceStream("KLRMobile.Assets.mortgage.pdf"), InstrumentId = 10000 }
         };
 
+        public async Task<IEnumerable<Image>> GetItemsPagedAsync(PagingParameterModel model)
+        {
+            //defaulting to 10 for now
+            var pagedItems = items.Skip((model.PageNumber - 1) * 10).Take(10).ToList();
+            return await Task.FromResult(pagedItems);
+        }
+
         public async Task<Image> GetItemAsync(int id)
         {
             return await Task.FromResult(items.FirstOrDefault(s => s.Id == id));
