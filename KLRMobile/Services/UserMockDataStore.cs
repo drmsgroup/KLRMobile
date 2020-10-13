@@ -19,6 +19,13 @@ namespace KLRMobile.Services
             throw new NotImplementedException();
         }
 
+        public async Task<IEnumerable<User>> GetItemsPagedAsync(PagingParameterModel model)
+        {
+            //defaulting to 10 for now
+            var pagedItems = items.Skip((model.PageNumber - 1) * 10).Take(10).ToList();
+            return await Task.FromResult(pagedItems);
+        }
+
         public async Task<IEnumerable<User>> GetItemsAsync(bool forceRefresh = false)
         {
             return await Task.FromResult(items);

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using KLRMobile.Models;
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -8,5 +9,6 @@ namespace KLRMobile.Services
     {
         Task<T> GetItemAsync(int id);
         Task<IEnumerable<T>> GetItemsAsync(bool forceRefresh = false);
+        Task<IEnumerable<T>> GetItemsPagedAsync(PagingParameterModel model);
     }
 }
