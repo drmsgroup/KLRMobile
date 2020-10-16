@@ -7,6 +7,9 @@ using Xamarin.Forms;
 
 using KLRMobile.Models;
 using KLRMobile.Views;
+using System.Collections.Generic;
+using System.Linq;
+using KLRMobile.Services;
 
 namespace KLRMobile.ViewModels
 {
@@ -15,44 +18,57 @@ namespace KLRMobile.ViewModels
         private LRMRResultItem _selectedItem;
         private County _selectedCounty;
 
-        public ObservableCollection<LRMRResultItem> Items { get; }
+        public List<LRMRResultItem> Items { get; set; }
         public ObservableCollection<County> Counties { get; }
-        public Command LoadItemsCommand { get; }
         public Command AddItemCommand { get;  }
         public Command<LRMRResultItem> ItemTapped { get; }
+        public Command SearchCommand { get; }
 
-        public SearchResultsViewModel()
+        public string Type { get; set; }
+
+        public SearchResultsViewModel(string type)
         {
+            Type = type;
+            SearchCommand = new Command(OnSearch);
             Title = "Results";
-            Items = new ObservableCollection<LRMRResultItem>();
+            Items = new List<LRMRResultItem>();
             Counties = new ObservableCollection<County>();
-            LoadItemsCommand = new Command(async () => await ExecuteLoadItemsCommand());
-
             ItemTapped = new Command<LRMRResultItem>(OnItemSelected);
 
             AddItemCommand = new Command(OnAddItem);
         }
 
-        async Task ExecuteLoadItemsCommand()
+        private async void OnSearch(object obj)
         {
-            IsBusy = true;
-
-            try
+            var model = new PagingParameterModel();
+            IEnumerable<LRMRResultItem> items;
+            switch (Type) {
+                case "Marriage":
+                    items = await MarriageLicenseDataStore.GetItemsPagedAsync(model);
+                    break;
+                case "LandRecords":
+                    items = await LandRecordsDataStore.GetItemsPagedAsync(model);
+                    break;
+                default:
+                    items = await MarriageLicenseDataStore.GetItemsPagedAsync(model);
+                    break;
+            }
+            
+            if (items != null)
             {
-                Items.Clear();
-                var items = await DataStore.GetItemsAsync(true);
-                foreach (var item in items)
-                {
-                    Items.Add(item);
+                switch (Type) {
+                    case "Marriage":
+                        Items = items.ToList();
+                        Application.Current.MainPage = new NavigationPage(new SearchResults("Marriage", this));
+                        break;
+                    case "LandRecords":
+                        Items = items.ToList();
+                        Application.Current.MainPage = new NavigationPage(new SearchResults("LandRecords", this));
+                        break;
+                    default:
+                            break;
                 }
-            }
-            catch (Exception ex)
-            {
-                Debug.WriteLine(ex);
-            }
-            finally
-            {
-                IsBusy = false;
+                
             }
         }
 

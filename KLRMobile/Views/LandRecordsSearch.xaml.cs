@@ -1,4 +1,5 @@
 ﻿using KLRMobile.Models;
+using KLRMobile.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -12,15 +13,12 @@ namespace KLRMobile.Views
         public LandRecordsSearch()
         {
             InitializeComponent();
+            var model = new SearchResultsViewModel("LandRecords");
+            BindingContext = model;
         }
         private void Back_Clicked(object sender, EventArgs e)
         {
             Application.Current.MainPage = new NavigationPage(new LaunchScreen());
-        }
-
-        private void SearchClicked(object sender, EventArgs e)
-        {
-            Application.Current.MainPage = new NavigationPage(new SearchResults("LandRecords"));
         }
     }
 }

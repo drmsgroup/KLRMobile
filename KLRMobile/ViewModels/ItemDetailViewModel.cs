@@ -41,15 +41,15 @@ namespace KLRMobile.ViewModels
 
         public async void LoadItemId(int itemId)
         {
-            try
-            {
-                var item = await DataStore.GetItemAsync(itemId);
-                Id = item.Id;
-            }
-            catch (Exception)
-            {
-                Debug.WriteLine("Failed to Load Item");
-            }
+            //try
+            //{
+            //    var item = await DataStore.GetItemAsync(itemId);
+            //    Id = item.Id;
+            //}
+            //catch (Exception)
+            //{
+            //    Debug.WriteLine("Failed to Load Item");
+            //}
         }
     }
 }

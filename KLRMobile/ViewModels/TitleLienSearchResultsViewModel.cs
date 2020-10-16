@@ -20,7 +20,7 @@ namespace KLRMobile.ViewModels
 
         public string DebtorLast { get; set; }
 
-        public List<TitleLienResultItem> Items { get; }
+        public List<TitleLienResultItem> Items { get; set; }
         public ObservableCollection<County> Counties { get; }
         public Command LoadItemsCommand { get; }
         public Command AddItemCommand { get;  }
@@ -90,14 +90,12 @@ namespace KLRMobile.ViewModels
 
         private void OnSearch(object obj)
         {
-            var debtor = Items.Where(i => i.DebtorLast.ToLower() == DebtorLast.ToLower()).FirstOrDefault();
-            if (debtor != null)
-            {
+            var items = Items.Where(i => i.DebtorLast.ToLower() == DebtorLast.ToLower()).ToList();
+            if (items != null) {
+                Items = items;
                 Application.Current.MainPage = new NavigationPage(new TitleLienSearchResults(this));
-            }
-            else
-            {
-                // InvalidLoginIsVisible = true;
+            } else {
+                Application.Current.MainPage = new NavigationPage(new TitleLienSearchResults(this));
             }
         }
 
