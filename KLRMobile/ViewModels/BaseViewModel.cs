@@ -11,8 +11,9 @@ using KLRMobile.Services;
 namespace KLRMobile.ViewModels
 {
     public class BaseViewModel : INotifyPropertyChanged
-    {
-        public IDataStore<LRMRResultItem> DataStore => DependencyService.Get<IDataStore<LRMRResultItem>>();
+    { 
+        public IDataStore<LRMRResultItem> LandRecordsDataStore => DependencyService.Get<LandRecordsMockDataStore>();
+        public IDataStore<LRMRResultItem> MarriageLicenseDataStore => DependencyService.Get<MarriageLicenseMockDataStore>();
         public IDataStore<User> UserDataStore => DependencyService.Get<IDataStore<User>>();
         public IDataStore<TitleLienResultItem> TitleLienDataStore => DependencyService.Get<IDataStore<TitleLienResultItem>>();
         public IDataStore<County> CountyDataStore => DependencyService.Get<IDataStore<County>>();

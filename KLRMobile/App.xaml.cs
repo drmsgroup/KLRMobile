@@ -15,7 +15,8 @@ namespace KLRMobile
             Syncfusion.Licensing.SyncfusionLicenseProvider.RegisterLicense("MzIyOTMxQDMxMzgyZTMyMmUzMG80RHpnOU5vMzVwNzczYkxsUDNFelFHU0pEd3F4NkQ0S2dQclpNdndEcFU9");
             InitializeComponent();
 
-            DependencyService.Register<LRMRMockDataStore>();
+            DependencyService.Register<LandRecordsMockDataStore>();
+            DependencyService.Register<MarriageLicenseMockDataStore>();
             DependencyService.Register<TitleLienMockDataStore>();
             DependencyService.Register<UserMockDataStore>();
             DependencyService.Register<ImageMockDataStore>();

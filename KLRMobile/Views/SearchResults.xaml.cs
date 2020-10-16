@@ -19,12 +19,13 @@ namespace KLRMobile.Views
         readonly SearchResultsViewModel _viewModel;
         private string SearchType { get; set; }
 
-        public SearchResults(string type)
+        public SearchResults(string type, SearchResultsViewModel viewModel)
         {
             InitializeComponent();
             SearchType = type;
 
-            BindingContext = _viewModel = new SearchResultsViewModel();
+            BindingContext = viewModel;
+            _viewModel = viewModel;
         }
 
         private async void ShowPdf(object sender, EventArgs e)
