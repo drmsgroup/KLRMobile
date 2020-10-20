@@ -11,10 +11,10 @@ namespace KLRMobile
 
         public App ()
         {
+            InitializeComponent();
             //Register Syncfusion license
             Syncfusion.Licensing.SyncfusionLicenseProvider.RegisterLicense("MzIyOTMxQDMxMzgyZTMyMmUzMG80RHpnOU5vMzVwNzczYkxsUDNFelFHU0pEd3F4NkQ0S2dQclpNdndEcFU9");
-            InitializeComponent();
-
+            
             DependencyService.Register<LandRecordsMockDataStore>();
             DependencyService.Register<MarriageLicenseMockDataStore>();
             DependencyService.Register<TitleLienMockDataStore>();

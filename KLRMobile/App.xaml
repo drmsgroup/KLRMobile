@@ -1,7 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <Application xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="KLRMobile.App">
+             x:Class="KLRMobile.App"
+             xmlns:themes="clr-namespace:KLRMobile.Themes;assembly=KLRMobile">
     <!--
         Define global resources and styles here, that apply to all pages in your app.
     -->
@@ -27,6 +28,9 @@
                     </VisualStateGroupList>
                 </Setter>
             </Style>
+            <ResourceDictionary.MergedDictionaries>
+                <themes:LightTheme />
+            </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>        
     </Application.Resources>
 </Application>
