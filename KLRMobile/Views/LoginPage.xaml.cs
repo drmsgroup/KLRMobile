@@ -1,6 +1,7 @@
 ﻿using KLRMobile.ViewModels;
 using Xamarin.Forms.Xaml;
 using Xamarin.Forms.Internals;
+using System;
 
 namespace KLRMobile.Views
 {
@@ -11,7 +12,6 @@ namespace KLRMobile.Views
         public LoginPage()
         {
             InitializeComponent();
-            BindingContext = new LoginViewModel();
         }
     }
 } 

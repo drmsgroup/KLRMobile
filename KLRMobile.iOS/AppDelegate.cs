@@ -18,6 +18,8 @@ namespace KLRMobile
 			Syncfusion.SfPdfViewer.XForms.iOS.SfPdfDocumentViewRenderer.Init();
 			Syncfusion.SfRangeSlider.XForms.iOS.SfRangeSliderRenderer.Init();
 			LoadApplication(new App());
+			Syncfusion.XForms.iOS.Border.SfBorderRenderer.Init();
+			Syncfusion.XForms.iOS.Buttons.SfButtonRenderer.Init();
 			return base.FinishedLaunching(app, options);
 		}
 	}
