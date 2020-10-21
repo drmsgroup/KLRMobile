@@ -1,17 +1,15 @@
-﻿using KLRMobile.ViewModels;
+﻿using Xamarin.Forms.Internals;
 using Xamarin.Forms.Xaml;
-using Xamarin.Forms.Internals;
-using System;
 
-namespace KLRMobile.Views
+namespace KLRMobile.Themes
 {
     [Preserve(AllMembers = true)]
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class LoginPage
+    public partial class LightTheme
     {
-        public LoginPage()
+        public LightTheme()
         {
             InitializeComponent();
         }
     }
-} 
+}

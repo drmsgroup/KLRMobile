@@ -1,25 +1,58 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             xmlns:local="clr-namespace:KLRMobile.ViewModels"
-             mc:Ignorable="d"
+             xmlns:border="clr-namespace:Syncfusion.XForms.Border;assembly=Syncfusion.Core.XForms"
+             xmlns:control="clr-namespace:KLRMobile.Controls"
+             xmlns:viewModel="clr-namespace:KLRMobile.ViewModels"
+             xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms"
+             xmlns:views="clr-namespace:KLRMobile.Views"
+             xmlns:gradient="clr-namespace:Syncfusion.XForms.Graphics;assembly=Syncfusion.Core.XForms"
+             xmlns:converter="clr-namespace:KLRMobile.Converters"
              x:Class="KLRMobile.Views.LoginPage"
-             BackgroundColor="#4D4B50">
+             Style="{StaticResource ContentPageStyle}">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <converter:BooleanToColorConverter x:Key="ColorConverter" />
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Styles.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
     <ContentPage.BindingContext>
-        <local:LoginViewModel/>
+        <viewModel:LoginViewModel/>
     </ContentPage.BindingContext>
     <ContentPage.Content>
-        <StackLayout Padding="10,0,10,0" VerticalOptions="Center">
-            <Label x:Name="InvalidLogin" Text="Invalid Login" IsVisible="{Binding InvalidLoginIsVisible}" FontSize="Medium" TextColor="Red">
-            </Label>
-            <Image Source="Logo" />
-            <Label Text="Email Address" FontSize="Medium" TextColor="White"/>
-            <Entry Text="{Binding EmailAddress, Mode=TwoWay}" FontSize="Medium" />
-            <Label Text="Password" FontSize="Medium" TextColor="White" />
-            <Entry Text="{Binding Password, Mode=TwoWay}" FontSize="Medium" IsPassword="true" />
-            <Button VerticalOptions="Center" Text="Login" Command="{Binding LoginCommand}" BackgroundColor="Green"/>
-        </StackLayout>
+        <Grid>
+            <gradient:SfGradientView Style="{StaticResource SfGradientViewStyle}" />
+            <ScrollView HorizontalOptions="Center">
+                <StackLayout Padding="10,0,10,0" VerticalOptions="Center">
+                    <Image Source="Logo" />
+                    <Label FontFamily="{StaticResource Montserrat-SemiBold}"
+                    FontSize="20"
+                    HorizontalTextAlignment="Center"
+                    Style="{StaticResource LabelStyle}"
+                    Text="Log In" />
+                    <views:EmailEntry Grid.Row="2" Padding="0,24" />
+                    <border:SfBorder
+                        BorderColor="{Binding Source={x:Reference PasswordEntry}, Path=IsFocused, Converter={StaticResource ColorConverter}, ConverterParameter=0}"
+                        Style="{StaticResource SfBorderStyle}">
+                        <control:BorderlessEntry
+                            x:Name="PasswordEntry"
+                            IsPassword="True"
+                            Placeholder="Password"
+                            Style="{StaticResource EntryStyle}"
+                            Text="{Binding Password}" />
+                    </border:SfBorder>
+                    <buttons:SfButton
+                        x:Name="Login"
+                        Margin="0,16"
+                        Command="{Binding LoginCommand}"
+                        Style="{StaticResource SfButtonStyle}"
+                        Text="LOG IN" />
+                </StackLayout>
+            </ScrollView>
+        </Grid>
     </ContentPage.Content>
 </ContentPage>

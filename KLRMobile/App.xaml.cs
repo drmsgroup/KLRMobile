@@ -11,17 +11,17 @@ namespace KLRMobile
 
         public App ()
         {
-            //Register Syncfusion license
-            Syncfusion.Licensing.SyncfusionLicenseProvider.RegisterLicense("MzIyOTMxQDMxMzgyZTMyMmUzMG80RHpnOU5vMzVwNzczYkxsUDNFelFHU0pEd3F4NkQ0S2dQclpNdndEcFU9");
             InitializeComponent();
-
+            //Register Syncfusion license
+            Syncfusion.Licensing.SyncfusionLicenseProvider.RegisterLicense("MzM4NDQxQDMxMzgyZTMzMmUzME5vMS9iSGU4eS9Eb3ZLbWZ5TStLRUV1T0diMGE0SDBONWZKOFNaNWNxdmc9");
+            
             DependencyService.Register<LandRecordsMockDataStore>();
             DependencyService.Register<MarriageLicenseMockDataStore>();
             DependencyService.Register<TitleLienMockDataStore>();
             DependencyService.Register<UserMockDataStore>();
             DependencyService.Register<ImageMockDataStore>();
 
-            MainPage = new AppShell();
+            MainPage = new NavigationPage(new LoginPage());
         }
 
         protected override void OnStart ()
