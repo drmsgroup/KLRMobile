@@ -28,7 +28,7 @@
             <gradient:SfGradientView Style="{StaticResource SfGradientViewStyle}" />
             <ScrollView HorizontalOptions="Center">
                 <StackLayout Padding="10,0,10,0" VerticalOptions="Center">
-                    <Image Source="Logo" />
+                    <Image WidthRequest="200" HeightRequest="200" Source="Logo" />
                     <Label FontFamily="{StaticResource Montserrat-SemiBold}"
                     FontSize="20"
                     HorizontalTextAlignment="Center"
@@ -45,6 +45,14 @@
                             Style="{StaticResource EntryStyle}"
                             Text="{Binding Password}" />
                     </border:SfBorder>
+                    <Label
+                        x:Name="ValidationLabel"
+                        Margin="15,-5,0,0"
+                        FontSize="12"
+                        IsVisible="{Binding InvalidLoginIsVisible}"
+                        Text="Invalid Login"
+                        TextColor="{DynamicResource Red}"
+                        VerticalOptions="FillAndExpand" />
                     <buttons:SfButton
                         x:Name="Login"
                         Margin="0,16"

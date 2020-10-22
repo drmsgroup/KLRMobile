@@ -64,9 +64,13 @@ namespace KLRMobile.ViewModels
 
         private void OnLogin(object obj)
         {
-            var user = Items.Where(i => i.EmailAddress.ToLower() == EmailAddress.ToLower() && i.Password == Password).FirstOrDefault();
-            if (user != null) {
-                Application.Current.MainPage = new NavigationPage(new LaunchScreen());
+            if (!String.IsNullOrEmpty(EmailAddress) && !String.IsNullOrEmpty(Password)) {
+                var user = Items.Where(i => i.EmailAddress.ToLower() == EmailAddress.ToLower() && i.Password == Password).FirstOrDefault();
+                if (user != null) {
+                    Application.Current.MainPage = new NavigationPage(new LaunchScreen());
+                } else {
+                    InvalidLoginIsVisible = true;
+                }
             } else {
                 InvalidLoginIsVisible = true;
             }
