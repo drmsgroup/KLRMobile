@@ -14,6 +14,7 @@ namespace KLRMobile.ViewModels
     {
         public Command LoginCommand { get; set; }
         public List<User> Items { get; }
+        public List<County> Counties { get; }
         private string password;
 
         public bool _invalidLoginVisible { get; set; }
@@ -42,6 +43,7 @@ namespace KLRMobile.ViewModels
             LoginCommand = new Command(OnLogin);
             SignUpCommand = new Command(SignUpClicked);
             Items = UserDataStore.GetItemsAsync(true).Result.ToList();
+            Counties = SettingsDataStore.GetItemsAsync(true).Result.ToList();
             InvalidLoginIsVisible = false;
         }
 
