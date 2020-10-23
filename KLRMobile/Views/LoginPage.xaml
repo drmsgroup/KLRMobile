@@ -8,8 +8,9 @@
              xmlns:views="clr-namespace:KLRMobile.Views"
              xmlns:gradient="clr-namespace:Syncfusion.XForms.Graphics;assembly=Syncfusion.Core.XForms"
              xmlns:converter="clr-namespace:KLRMobile.Converters"
+             xmlns:navigation="clr-namespace:Syncfusion.SfNavigationDrawer.XForms;assembly=Syncfusion.SfNavigationDrawer.XForms"
              x:Class="KLRMobile.Views.LoginPage"
-             Style="{StaticResource ContentPageStyle}">
+             NavigationPage.HasNavigationBar="true">
 
     <ContentPage.Resources>
         <ResourceDictionary>
@@ -26,26 +27,26 @@
     <ContentPage.Content>
         <Grid>
             <gradient:SfGradientView Style="{StaticResource SfGradientViewStyle}" />
-            <ScrollView HorizontalOptions="Center">
-                <StackLayout Padding="10,0,10,0" VerticalOptions="Center">
-                    <Image WidthRequest="200" HeightRequest="200" Source="Logo" />
-                    <Label FontFamily="{StaticResource Montserrat-SemiBold}"
+            <!--<ScrollView HorizontalOptions="Center">-->
+            <StackLayout Padding="10,0,10,0" VerticalOptions="Center">
+                <Image WidthRequest="200" HeightRequest="200" Source="Logo" />
+                <Label FontFamily="{StaticResource Montserrat-SemiBold}"
                     FontSize="20"
                     HorizontalTextAlignment="Center"
                     Style="{StaticResource LabelStyle}"
                     Text="Log In" />
-                    <views:EmailEntry Grid.Row="2" Padding="0,24" />
-                    <border:SfBorder
+                <views:EmailEntry Grid.Row="2" Padding="0,24" />
+                <border:SfBorder
                         BorderColor="{Binding Source={x:Reference PasswordEntry}, Path=IsFocused, Converter={StaticResource ColorConverter}, ConverterParameter=0}"
                         Style="{StaticResource SfBorderStyle}">
-                        <control:BorderlessEntry
+                    <control:BorderlessEntry
                             x:Name="PasswordEntry"
                             IsPassword="True"
                             Placeholder="Password"
                             Style="{StaticResource EntryStyle}"
                             Text="{Binding Password}" />
-                    </border:SfBorder>
-                    <Label
+                </border:SfBorder>
+                <Label
                         x:Name="ValidationLabel"
                         Margin="15,-5,0,0"
                         FontSize="12"
@@ -53,14 +54,13 @@
                         Text="Invalid Login"
                         TextColor="{DynamicResource Red}"
                         VerticalOptions="FillAndExpand" />
-                    <buttons:SfButton
+                <buttons:SfButton
                         x:Name="Login"
                         Margin="0,16"
                         Command="{Binding LoginCommand}"
                         Style="{StaticResource SfButtonStyle}"
                         Text="LOG IN" />
-                </StackLayout>
-            </ScrollView>
+            </StackLayout>
         </Grid>
     </ContentPage.Content>
 </ContentPage>

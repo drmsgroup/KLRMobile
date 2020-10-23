@@ -14,7 +14,7 @@ namespace KLRMobile
             Routing.RegisterRoute(nameof(NewItemPage), typeof(NewItemPage));
             Routing.RegisterRoute(nameof(LaunchScreen), typeof(LaunchScreen));
             Routing.RegisterRoute(nameof(SettingsPage), typeof(SettingsPage));
-            // Navigation.PushModalAsync(new LoginPage());
+            //Navigation.PushModalAsync(new LoginPage());
         }
 
         private async void OnMenuItemClicked(object sender, EventArgs e)

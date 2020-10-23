@@ -16,7 +16,7 @@ namespace KLRMobile.ViewModels
         public IDataStore<LRMRResultItem> MarriageLicenseDataStore => DependencyService.Get<MarriageLicenseMockDataStore>();
         public IDataStore<User> UserDataStore => DependencyService.Get<IDataStore<User>>();
         public IDataStore<TitleLienResultItem> TitleLienDataStore => DependencyService.Get<IDataStore<TitleLienResultItem>>();
-        public IDataStore<County> CountyDataStore => DependencyService.Get<IDataStore<County>>();
+        public IDataStore<County> SettingsDataStore => DependencyService.Get<IDataStore<County>>();
 
         bool isBusy = false;
         public bool IsBusy

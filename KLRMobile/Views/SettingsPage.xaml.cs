@@ -12,7 +12,6 @@ namespace KLRMobile.Views
         public SettingsPage()
         {
             InitializeComponent();
-            BindingContext = new LoginViewModel();
         }
 
         private void Back_Clicked(object sender, EventArgs e)

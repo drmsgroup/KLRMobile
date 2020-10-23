@@ -20,8 +20,9 @@ namespace KLRMobile
             DependencyService.Register<TitleLienMockDataStore>();
             DependencyService.Register<UserMockDataStore>();
             DependencyService.Register<ImageMockDataStore>();
+            DependencyService.Register<SettingsMockDataStore>();
 
-            MainPage = new NavigationPage(new LoginPage());
+            MainPage = new AppShell();
         }
 
         protected override void OnStart ()
