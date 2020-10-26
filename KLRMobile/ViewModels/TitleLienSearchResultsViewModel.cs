@@ -26,6 +26,18 @@ namespace KLRMobile.ViewModels
         public Command AddItemCommand { get;  }
         public Command<TitleLienResultItem> ItemTapped { get; }
         public Command SearchCommand { get; }
+        public bool noResultsVisible { get; set; }
+        public bool NoResultsVisible {
+            get
+            {
+                return noResultsVisible;
+            }
+            set
+            {
+                noResultsVisible = value;
+                OnPropertyChanged(nameof(NoResultsVisible));
+            }
+        }
 
         public TitleLienSearchResultsViewModel()
         {
@@ -90,12 +102,16 @@ namespace KLRMobile.ViewModels
 
         private void OnSearch(object obj)
         {
-            var items = Items.Where(i => i.DebtorLast.ToLower() == DebtorLast.ToLower()).ToList();
-            if (items != null) {
-                Items = items;
-                Application.Current.MainPage = new NavigationPage(new TitleLienSearchResults(this));
+            if (!String.IsNullOrEmpty(DebtorLast)) {
+                var items = Items.Where(i => i.DebtorLast.ToLower() == DebtorLast.ToLower()).ToList();
+                if (items.Count() > 0)  {
+                    Items = items;
+                    Application.Current.MainPage = new NavigationPage(new TitleLienSearchResults(this));
+                } else {
+                    NoResultsVisible = true;
+                }
             } else {
-                Application.Current.MainPage = new NavigationPage(new TitleLienSearchResults(this));
+                NoResultsVisible = true;
             }
         }
 
