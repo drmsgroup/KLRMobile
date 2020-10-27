@@ -110,8 +110,8 @@
                     <ColumnDefinition Width="50*" />
                     <ColumnDefinition Width="50*" />
                 </Grid.ColumnDefinitions>
-                <Button HorizontalOptions="FillAndExpand" Text="Back" Grid.Column="0" BackgroundColor="Green" />
-                <Button HorizontalOptions="FillAndExpand" Text="Next" Grid.Column="1" BackgroundColor="LightGray" TextColor="Black" />
+                <Button HorizontalOptions="FillAndExpand" Text="Back" Grid.Column="0" BackgroundColor="Green" Command="{Binding PreviousResultsCommand}"/>
+                <Button HorizontalOptions="FillAndExpand" Text="Next" Grid.Column="1" BackgroundColor="LightGray" TextColor="Black" Command="{Binding NextResultsCommand}" />
             </Grid>
         </StackLayout>
     </StackLayout>
