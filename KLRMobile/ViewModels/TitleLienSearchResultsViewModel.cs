@@ -10,6 +10,7 @@ using KLRMobile.Views;
 using System.Collections.Generic;
 using System.Linq;
 using KLRMobile.Services;
+using Xamarin.Forms.Internals;
 
 namespace KLRMobile.ViewModels
 {
@@ -20,13 +21,18 @@ namespace KLRMobile.ViewModels
 
         public string DebtorLast { get; set; }
 
-        public List<TitleLienResultItem> Items { get; set; }
+        public ObservableCollection<TitleLienResultItem> Items { get; set; }
         public ObservableCollection<County> Counties { get; }
         public Command LoadItemsCommand { get; }
         public Command AddItemCommand { get;  }
         public Command<TitleLienResultItem> ItemTapped { get; }
         public Command SearchCommand { get; }
+        public Command NextResultsCommand { get; }
+        public Command PreviousResultsCommand { get; }
         public bool noResultsVisible { get; set; }
+        public int CurrentPage { get; set; }
+        public PagingParameterModel PagingModel { get; set; }
+
         public bool NoResultsVisible {
             get
             {
@@ -42,14 +48,17 @@ namespace KLRMobile.ViewModels
         public TitleLienSearchResultsViewModel()
         {
             SearchCommand = new Command(OnSearch);
+            NextResultsCommand = new Command(NextResults);
+            PreviousResultsCommand = new Command(PreviousResults);
             Title = "Results";
-            Items = TitleLienDataStore.GetItemsAsync(true).Result.ToList();
             Counties = new ObservableCollection<County>();
+            Items = new ObservableCollection<TitleLienResultItem>();
             LoadItemsCommand = new Command(async () => await ExecuteLoadItemsCommand());
 
             ItemTapped = new Command<TitleLienResultItem>(OnItemSelected);
 
             AddItemCommand = new Command(OnAddItem);
+            PagingModel = new PagingParameterModel();
         }
 
         async Task ExecuteLoadItemsCommand()
@@ -59,8 +68,7 @@ namespace KLRMobile.ViewModels
             try
             {
                 Items.Clear();
-                var model = new PagingParameterModel();
-                var items = await TitleLienDataStore.GetItemsPagedAsync(model);
+                var items = await TitleLienDataStore.GetItemsPagedAsync(PagingModel);
                 foreach (var item in items)
                 {
                     Items.Add(item);
@@ -100,13 +108,68 @@ namespace KLRMobile.ViewModels
             }
         }
 
-        private void OnSearch(object obj)
+        private async void OnSearch(object obj)
         {
             if (!String.IsNullOrEmpty(DebtorLast)) {
-                var items = Items.Where(i => i.DebtorLast.ToLower() == DebtorLast.ToLower()).ToList();
+                var model = new PagingParameterModel();
+                model.PageNumber = 1;
+                var items = await TitleLienDataStore.GetItemsPagedAsync(model);
                 if (items.Count() > 0)  {
-                    Items = items;
+                    Items.Clear();
+                    items = items.Where(i => i.DebtorLast.ToLower() == DebtorLast.ToLower()).ToList();
+                    foreach (var item in items) {
+                        Items.Add(item);
+                    }
                     Application.Current.MainPage = new NavigationPage(new TitleLienSearchResults(this));
+                    CurrentPage = model.PageNumber;
+                } else {
+                    NoResultsVisible = true;
+                }
+            } else {
+                NoResultsVisible = true;
+            }
+        }
+
+        public async void PreviousResults()
+        {
+            if (!String.IsNullOrEmpty(DebtorLast))
+            {
+                PagingModel.PageNumber--;
+                var items = await TitleLienDataStore.GetItemsPagedAsync(PagingModel);
+                if (items.Count() > 0)
+                {
+                    Items.Clear();
+                    items = items.Where(i => i.DebtorLast.ToLower() == DebtorLast.ToLower()).ToList();
+                    foreach (var item in items)
+                    {
+                        Items.Add(item);
+                    }
+                    CurrentPage = PagingModel.PageNumber;
+                }
+                else
+                {
+                    NoResultsVisible = true;
+                }
+            }
+            else
+            {
+                NoResultsVisible = true;
+            }
+        }
+
+        public async void NextResults()
+        {
+            if (!String.IsNullOrEmpty(DebtorLast)) {
+                PagingModel.PageNumber++;
+                var items = await TitleLienDataStore.GetItemsPagedAsync(PagingModel);
+                if (items.Count() > 0) {
+                    Items.Clear();
+                    items = items.Where(i => i.DebtorLast.ToLower() == DebtorLast.ToLower()).ToList();
+                    foreach (var item in items)
+                    {
+                        Items.Add(item);
+                    }
+                    CurrentPage = PagingModel.PageNumber;
                 } else {
                     NoResultsVisible = true;
                 }
