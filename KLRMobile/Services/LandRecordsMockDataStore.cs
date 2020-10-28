@@ -11,8 +11,8 @@ namespace KLRMobile.Services
         readonly List<LRMRResultItem> items;
         readonly List<Entity> entities;
 
-        public LandRecordsMockDataStore() { 
-
+        public LandRecordsMockDataStore() {
+            //these entities will need to be flattened in the API
             entities = new List<Entity> {
                 new Entity { FirstName = "First", LastName = "Last", Id = Guid.NewGuid().ToString(), InstrumentId = 10000 },
                 new Entity { FirstName = "First2", LastName = "Last2", Id = Guid.NewGuid().ToString(), InstrumentId = 10001 },
