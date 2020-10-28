@@ -20,9 +20,10 @@ namespace KLRMobile.ViewModels
 
         public List<LRMRResultItem> Items { get; set; }
         public ObservableCollection<County> Counties { get; }
-        public Command AddItemCommand { get;  }
+        public Command AddItemCommand { get; }
         public Command<LRMRResultItem> ItemTapped { get; }
         public Command SearchCommand { get; }
+        public PagingParameterModel PagingParameterModel {get; set;}
 
         public string Type { get; set; }
 
@@ -36,21 +37,21 @@ namespace KLRMobile.ViewModels
             ItemTapped = new Command<LRMRResultItem>(OnItemSelected);
 
             AddItemCommand = new Command(OnAddItem);
+            PagingParameterModel = new PagingParameterModel();
         }
 
         private async void OnSearch(object obj)
         {
-            var model = new PagingParameterModel();
             IEnumerable<LRMRResultItem> items;
             switch (Type) {
                 case "Marriage":
-                    items = await MarriageLicenseDataStore.GetItemsPagedAsync(model);
+                    items = await MarriageLicenseDataStore.GetItemsPagedAsync(PagingParameterModel);
                     break;
                 case "LandRecords":
-                    items = await LandRecordsDataStore.GetItemsPagedAsync(model);
+                    items = await LandRecordsDataStore.GetItemsPagedAsync(PagingParameterModel);
                     break;
                 default:
-                    items = await MarriageLicenseDataStore.GetItemsPagedAsync(model);
+                    items = await MarriageLicenseDataStore.GetItemsPagedAsync(PagingParameterModel);
                     break;
             }
             
