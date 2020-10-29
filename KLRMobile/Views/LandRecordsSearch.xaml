@@ -11,10 +11,6 @@
         <ToolbarItem Text="Back" Clicked="Back_Clicked" />
     </ContentPage.ToolbarItems>
 
-    <ContentPage.BindingContext>
-        <vm:SearchViewModel />
-    </ContentPage.BindingContext>
-    
     <ContentPage.Resources>
         <ResourceDictionary>
             <Color x:Key="Accent">#96d1ff</Color>
@@ -28,8 +24,8 @@
         </Grid.RowDefinitions>
         <ScrollView Grid.Row="1">
             <StackLayout Orientation="Vertical" Padding="30,24,30,24" Spacing="10">
-                <Entry Text="{Binding Text, Mode=TwoWay}" FontSize="Medium" Placeholder="Last Name" />
-                <Entry Text="{Binding Text, Mode=TwoWay}" FontSize="Medium" Placeholder="First Name" />
+                <Entry Text="{Binding PagingParameterModel.LastName, Mode=TwoWay}" FontSize="Medium" Placeholder="Last Name" />
+                <Entry Text="{Binding PagingParameterModel.FirstName, Mode=TwoWay}" FontSize="Medium" Placeholder="First Name" />
                 <Entry Text="{Binding Text, Mode=TwoWay}" FontSize="Medium" Placeholder="Book" />
                 <Entry Text="{Binding Text, Mode=TwoWay}" FontSize="Medium" Placeholder="Page" />
                 <local:ExtendedDatePicker PlaceHolder="Start Date" />
