@@ -31,7 +31,7 @@ namespace KLRMobile.Services
         public async Task<IEnumerable<LRMRResultItem>> GetItemsPagedAsync(PagingParameterModel model)
         {
             //defaulting to 10 for now
-            var pagedItems = items.Skip((model.PageNumber - 1) * 10).Take(10).ToList();
+            var pagedItems = items.Where(x => x.FirstParty.Contains(model.FirstName) || x.SecondParty.Contains(model.LastName)).Skip((model.PageNumber - 1) * 10).Take(10).ToList();
             return await Task.FromResult(pagedItems);
         }
 

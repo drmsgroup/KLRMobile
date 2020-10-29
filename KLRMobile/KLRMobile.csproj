@@ -51,9 +51,6 @@
     <Compile Update="Views\TitleLienSearch.xaml.cs">
       <DependentUpon>TitleLienSearch.xaml</DependentUpon>
     </Compile>
-    <Compile Update="Views\SearchPage.xaml.cs">
-      <DependentUpon>SearchPage.xaml</DependentUpon>
-    </Compile>
   </ItemGroup>
 
   <ItemGroup>
