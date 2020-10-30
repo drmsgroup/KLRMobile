@@ -25,7 +25,7 @@ namespace KLRMobile.Views
             Application.Current.MainPage = new NavigationPage(new TitleLienSearch());
         }
 
-        private void MarriageLicneseButton_OnClicked(object sender, EventArgs e)
+        private void MarriageLicenseButton_OnClicked(object sender, EventArgs e)
         {
             Application.Current.MainPage = new NavigationPage(new MarriageLicenseSearch());
         }
