@@ -8,7 +8,6 @@
              xmlns:views="clr-namespace:KLRMobile.Views"
              xmlns:gradient="clr-namespace:Syncfusion.XForms.Graphics;assembly=Syncfusion.Core.XForms"
              xmlns:converter="clr-namespace:KLRMobile.Converters"
-             xmlns:navigation="clr-namespace:Syncfusion.SfNavigationDrawer.XForms;assembly=Syncfusion.SfNavigationDrawer.XForms"
              x:Class="KLRMobile.Views.LoginPage"
              NavigationPage.HasNavigationBar="true">
 
