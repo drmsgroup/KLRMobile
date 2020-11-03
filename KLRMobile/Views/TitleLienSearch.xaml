@@ -4,7 +4,13 @@
              x:Class="KLRMobile.Views.TitleLienSearch"
              xmlns:vm="clr-namespace:KLRMobile.ViewModels" xmlns:sys="clr-namespace:System;assembly=mscorlib"
              Title="{Binding Title}"
+             xmlns:control="clr-namespace:KLRMobile.Controls"
              xmlns:local="clr-namespace:KLRMobile.Controls"
+             xmlns:gradient="clr-namespace:Syncfusion.XForms.Graphics;assembly=Syncfusion.Core.XForms"
+             xmlns:converter="clr-namespace:KLRMobile.Converters"
+             xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms"
+             xmlns:combobox="clr-namespace:Syncfusion.XForms.ComboBox;assembly=Syncfusion.SfComboBox.XForms"
+             xmlns:border="clr-namespace:Syncfusion.XForms.Border;assembly=Syncfusion.Core.XForms"
              BackgroundColor="#4D4B50">
 
     <ContentPage.ToolbarItems>
@@ -14,47 +20,99 @@
     <ContentPage.BindingContext>
         <vm:TitleLienSearchResultsViewModel />
     </ContentPage.BindingContext>
-    
+
     <ContentPage.Resources>
         <ResourceDictionary>
-            <Color x:Key="Accent">#96d1ff</Color>
+            <converter:BooleanToColorConverter x:Key="ColorConverter" />
+            <!--<Color x:Key="Accent">#96d1ff</Color>-->
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Styles.xaml" />
+            </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </ContentPage.Resources>
-
-    <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="*" />
-        </Grid.RowDefinitions>
-        <ScrollView Grid.Row="1">
-            <StackLayout Orientation="Vertical" Padding="30,24,30,24" Spacing="10">
-                <Entry Text="{Binding DebtorLast, Mode=TwoWay}" FontSize="Medium" Placeholder="Debtor Last" />
-                <Entry Text="{Binding Text, Mode=TwoWay}" FontSize="Medium" Placeholder="Debtor First" />
-                <Entry Text="{Binding Text, Mode=TwoWay}" FontSize="Medium" Placeholder="Holder Last" />
-                <Entry Text="{Binding Text, Mode=TwoWay}" FontSize="Medium" Placeholder="Holder First" />
-                <local:ExtendedDatePicker PlaceHolder="Start Date" />
-                <local:ExtendedDatePicker PlaceHolder="End Date" />
-                <Picker Title="Agreement Type" />
-                <Entry Text="{Binding Text, Mode=TwoWay}" FontSize="Medium" Placeholder="File Number"/>
-                <Entry Text="{Binding Text, Mode=TwoWay}" FontSize="Medium" Placeholder="VIN Number"/>
+    <ContentPage.Content>
+        <Grid>
+            <gradient:SfGradientView Style="{StaticResource SfGradientViewStyle}" />
+            <StackLayout VerticalOptions="Center" Padding="30,24,30,24" Spacing="10">
+                <border:SfBorder Style="{StaticResource SfBorderStyle}">
+                    <control:BorderlessEntry
+                        x:Name="LastName"
+                        Placeholder="Debtor Last"
+                        Style="{StaticResource EntryStyle}"
+                        Text="{Binding PagingParameterModel.LastName}" />
+                </border:SfBorder>
+                <border:SfBorder Style="{StaticResource SfBorderStyle}">
+                    <control:BorderlessEntry
+                        x:Name="FirstName"
+                        Placeholder="Debtor First"
+                        Style="{StaticResource EntryStyle}"
+                        Text="{Binding PagingParameterModel.FirstName}" />
+                </border:SfBorder>
+                <border:SfBorder Style="{StaticResource SfBorderStyle}">
+                    <control:BorderlessEntry
+                        x:Name="HolderLast"
+                        Placeholder="Holder Last"
+                        Style="{StaticResource EntryStyle}"
+                        Text="{Binding PagingParameterModel.HolderLast}" />
+                </border:SfBorder>
+                <border:SfBorder Style="{StaticResource SfBorderStyle}">
+                    <control:BorderlessEntry
+                        x:Name="HolderFirst"
+                        Placeholder="Holder First"
+                        Style="{StaticResource EntryStyle}"
+                        Text="{Binding PagingParameterModel.HolderFirst}" />
+                </border:SfBorder>
+                <border:SfBorder Style="{StaticResource SfBorderStyle}">
+                    <local:ExtendedDatePicker Style="{StaticResource EntryStyle}" PlaceHolder="Start Date" />
+                </border:SfBorder>
+                <border:SfBorder Style="{StaticResource SfBorderStyle}">
+                    <local:ExtendedDatePicker Style="{StaticResource EntryStyle}" PlaceHolder="End Date" />
+                </border:SfBorder>
+                <border:SfBorder Style="{StaticResource SfBorderStyle}">
+                    <combobox:SfComboBox x:Name="AgreementType" HeightRequest="40" Watermark="Agreement Type" Style="{StaticResource ComboBoxStyle}" />
+                </border:SfBorder>
+                <border:SfBorder Style="{StaticResource SfBorderStyle}">
+                    <control:BorderlessEntry
+                        x:Name="FileNumber"
+                        Placeholder="File Number"
+                        Style="{StaticResource EntryStyle}"
+                        Text="{Binding PagingParameterModel.FileNumber}" />
+                </border:SfBorder>
+                <border:SfBorder Style="{StaticResource SfBorderStyle}">
+                    <control:BorderlessEntry
+                        x:Name="VINNumber"
+                        Placeholder="VIN Number"
+                        Style="{StaticResource EntryStyle}"
+                        Text="{Binding PagingParameterModel.VINNumber}" />
+                </border:SfBorder>
                 <Label
-                    x:Name="ValidationLabel"
-                    Margin="15,-5,0,0"
-                    FontSize="18"
-                    IsVisible="{Binding NoResultsVisible}"
-                    Text="No Results"
-                    TextColor="{DynamicResource Red}"
-                    VerticalOptions="FillAndExpand" />
+                x:Name="ValidationLabel"
+                Margin="15,-5,0,0"
+                FontSize="18"
+                IsVisible="{Binding NoResultsVisible}"
+                Text="No Results"
+                TextColor="{DynamicResource Red}"
+                VerticalOptions="FillAndExpand" />
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition />
                         <ColumnDefinition />
                     </Grid.ColumnDefinitions>
-                    <Button Text="Search" Grid.Column="0" BackgroundColor="Green" Command="{Binding SearchCommand}" />
-                    <Button Text="Reset" Grid.Column="1" BackgroundColor="LightGray" TextColor="Black" />
+                    <buttons:SfButton
+                        Grid.Column="0"
+                        x:Name="Search"
+                        Margin="0,16"
+                        Command="{Binding SearchCommand}"
+                        Style="{StaticResource SfButtonStyle}"
+                        Text="Search" />
+                    <buttons:SfButton
+                        Grid.Column="1"
+                        x:Name="Reset"
+                        Margin="0,16"
+                        Style="{StaticResource SfButtonStyle}"
+                        Text="Reset" />
                 </Grid>
             </StackLayout>
-        </ScrollView>
     </Grid>
-
+    </ContentPage.Content>
 </ContentPage>
