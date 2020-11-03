@@ -2,10 +2,14 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="KLRMobile.Views.LandRecordsSearch"
-             xmlns:vm="clr-namespace:KLRMobile.ViewModels" xmlns:sys="clr-namespace:System;assembly=mscorlib"
              Title="{Binding Title}"
+             xmlns:control="clr-namespace:KLRMobile.Controls"
              xmlns:local="clr-namespace:KLRMobile.Controls"
-             BackgroundColor="#4D4B50">
+             xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms"
+             xmlns:gradient="clr-namespace:Syncfusion.XForms.Graphics;assembly=Syncfusion.Core.XForms"
+             xmlns:converter="clr-namespace:KLRMobile.Converters"
+             xmlns:combobox="clr-namespace:Syncfusion.XForms.ComboBox;assembly=Syncfusion.SfComboBox.XForms"
+             xmlns:border="clr-namespace:Syncfusion.XForms.Border;assembly=Syncfusion.Core.XForms">
 
     <ContentPage.ToolbarItems>
         <ToolbarItem Text="Back" Clicked="Back_Clicked" />
@@ -13,36 +17,84 @@
 
     <ContentPage.Resources>
         <ResourceDictionary>
-            <Color x:Key="Accent">#96d1ff</Color>
+            <converter:BooleanToColorConverter x:Key="ColorConverter" />
+            <!--<Color x:Key="Accent">#96d1ff</Color>-->
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Styles.xaml" />
+            </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </ContentPage.Resources>
-
-    <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="*" />
-        </Grid.RowDefinitions>
-        <ScrollView Grid.Row="1">
-            <StackLayout Orientation="Vertical" Padding="30,24,30,24" Spacing="10">
-                <Entry Text="{Binding PagingParameterModel.LastName, Mode=TwoWay}" FontSize="Medium" Placeholder="Last Name" />
-                <Entry Text="{Binding PagingParameterModel.FirstName, Mode=TwoWay}" FontSize="Medium" Placeholder="First Name" />
-                <Entry Text="{Binding Text, Mode=TwoWay}" FontSize="Medium" Placeholder="Book" />
-                <Entry Text="{Binding Text, Mode=TwoWay}" FontSize="Medium" Placeholder="Page" />
-                <local:ExtendedDatePicker PlaceHolder="Start Date" />
-                <local:ExtendedDatePicker PlaceHolder="End Date" />
-                <Entry Text="{Binding Text, Mode=TwoWay}" FontSize="Medium" Placeholder="Order" />
-                <Picker Title="Instrument Type" />
-                <Picker Title="Book Name" />
+    <ContentPage.Content>
+        <Grid>
+        <gradient:SfGradientView Style="{StaticResource SfGradientViewStyle}" />
+            <StackLayout Padding="10,0,10,0" VerticalOptions="Center">
+                <border:SfBorder Style="{StaticResource SfBorderStyle}">
+                    <control:BorderlessEntry
+                            x:Name="LastName"
+                            Placeholder="Last Name"
+                            Style="{StaticResource EntryStyle}"
+                            Text="{Binding PagingParameterModel.LastName}" />
+                </border:SfBorder>
+                <border:SfBorder Style="{StaticResource SfBorderStyle}">
+                <control:BorderlessEntry
+                        x:Name="FirstName"
+                        Placeholder="First Name"
+                        Style="{StaticResource EntryStyle}"
+                        Text="{Binding PagingParameterModel.FirstName}" />
+                </border:SfBorder>
+                <border:SfBorder Style="{StaticResource SfBorderStyle}">
+                <control:BorderlessEntry
+                        x:Name="Book"
+                        Placeholder="Book"
+                        Style="{StaticResource EntryStyle}"
+                        Text="{Binding PagingParameterModel.Book}" />
+                </border:SfBorder>
+                <border:SfBorder Style="{StaticResource SfBorderStyle}">
+                <control:BorderlessEntry
+                        x:Name="Page"
+                        Placeholder="Page"
+                        Style="{StaticResource EntryStyle}"
+                        Text="{Binding PagingParameterModel.Page}" />
+                </border:SfBorder>
+                <border:SfBorder Style="{StaticResource SfBorderStyle}">
+                <local:ExtendedDatePicker Style="{StaticResource EntryStyle}" PlaceHolder="Start Date" />
+                </border:SfBorder>
+                <border:SfBorder Style="{StaticResource SfBorderStyle}">
+                <local:ExtendedDatePicker Style="{StaticResource EntryStyle}" PlaceHolder="End Date" />
+                </border:SfBorder>
+                <border:SfBorder Style="{StaticResource SfBorderStyle}">
+                    <control:BorderlessEntry
+                        x:Name="Order"
+                        Placeholder="Order"
+                        Style="{StaticResource EntryStyle}"
+                        Text="{Binding Text, Mode=TwoWay}" />
+                </border:SfBorder>
+                <border:SfBorder Style="{StaticResource SfBorderStyle}">
+                    <combobox:SfComboBox x:Name="InstrumentType" HeightRequest="40" Watermark="Instrument Type" Style="{StaticResource ComboBoxStyle}" />
+                </border:SfBorder>
+                <border:SfBorder Style="{StaticResource SfBorderStyle}">
+                    <combobox:SfComboBox x:Name="BookName" HeightRequest="40" Watermark="Book Name" Style="{StaticResource ComboBoxStyle}" />
+                </border:SfBorder>
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition />
                         <ColumnDefinition />
                     </Grid.ColumnDefinitions>
-                    <Button Text="Search" Grid.Column="0" BackgroundColor="Green" Command="{Binding SearchCommand}" />
-                    <Button Text="Reset" Grid.Column="1" BackgroundColor="LightGray" TextColor="Black" />
+                    <buttons:SfButton
+                        Grid.Column="0"
+                        x:Name="Search"
+                        Margin="0,16"
+                        Command="{Binding SearchCommand}"
+                        Style="{StaticResource SfButtonStyle}"
+                        Text="Search" />
+                    <buttons:SfButton
+                        Grid.Column="1"
+                        x:Name="Reset"
+                        Margin="0,16"
+                        Style="{StaticResource SfButtonStyle}"
+                        Text="Reset" />
                 </Grid>
             </StackLayout>
-        </ScrollView>
-    </Grid>
-
+        </Grid>
+    </ContentPage.Content>
 </ContentPage>
