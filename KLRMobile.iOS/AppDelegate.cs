@@ -20,6 +20,7 @@ namespace KLRMobile
 			LoadApplication(new App());
 			Syncfusion.XForms.iOS.Border.SfBorderRenderer.Init();
 			Syncfusion.XForms.iOS.Buttons.SfButtonRenderer.Init();
+			Syncfusion.XForms.iOS.ComboBox.SfComboBoxRenderer.Init();
 			return base.FinishedLaunching(app, options);
 		}
 	}
