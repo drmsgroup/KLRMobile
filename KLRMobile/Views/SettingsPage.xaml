@@ -4,9 +4,22 @@
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:viewModel="clr-namespace:KLRMobile.ViewModels"
+             xmlns:gradient="clr-namespace:Syncfusion.XForms.Graphics;assembly=Syncfusion.Core.XForms"
+             xmlns:converter="clr-namespace:KLRMobile.Converters"
+             xmlns:combobox="clr-namespace:Syncfusion.XForms.ComboBox;assembly=Syncfusion.SfComboBox.XForms"
+             xmlns:border="clr-namespace:Syncfusion.XForms.Border;assembly=Syncfusion.Core.XForms"
+             xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms"
              mc:Ignorable="d"
-             x:Class="KLRMobile.Views.SettingsPage"
-             BackgroundColor="#4D4B50">
+             x:Class="KLRMobile.Views.SettingsPage">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <converter:BooleanToColorConverter x:Key="ColorConverter" />
+            <!--<Color x:Key="Accent">#96d1ff</Color>-->
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Styles.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </ContentPage.Resources>
     <ContentPage.BindingContext>
         <viewModel:LoginViewModel/>
     </ContentPage.BindingContext>
@@ -14,26 +27,39 @@
         <ToolbarItem Text="Back" Clicked="Back_Clicked" />
     </ContentPage.ToolbarItems>
     <ContentPage.Content>
-        <StackLayout Padding="10,0,10,0" VerticalOptions="Center">
+        <Grid>
+        <gradient:SfGradientView Style="{StaticResource SfGradientViewStyle}" />
+        <StackLayout VerticalOptions="Center" Padding="30,24,30,24" Spacing="10">
+            <border:SfBorder Style="{StaticResource SfBorderStyle}">
+                <combobox:SfComboBox x:Name="CountyCombo"
+                                DataSource="{Binding Counties}"
+                                HeightRequest="40"
+                                Watermark="Select a County"
+                                Style="{StaticResource ComboBoxStyle}"
+                                DisplayMemberPath="Name"
+                                />
+            </border:SfBorder>
             <Grid>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="*" />
-                </Grid.RowDefinitions>
-                <ScrollView Grid.Row="1">
-                    <StackLayout Orientation="Vertical" Padding="30,24,30,24" Spacing="10">
-                        <Picker Title="Select a County"
-                            TitleColor="Red"
-                            ItemsSource="{Binding Counties}"
-                            ItemDisplayBinding="{Binding Name}" />
-                    </StackLayout>
-                </ScrollView>
-                <StackLayout Orientation="Horizontal" Grid.Row="2">
-                    <Button BackgroundColor="Beige" TextColor="Black" Text="Cancel" Clicked="Back_Clicked" HorizontalOptions="FillAndExpand"></Button>
-                    <Button BackgroundColor="Green" Text="Save" Command="{Binding SaveCommand}" HorizontalOptions="FillAndExpand"></Button>
-                </StackLayout>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+                <buttons:SfButton
+                        Grid.Column="0"
+                        x:Name="Cancel"
+                        Margin="0,16"
+                        Clicked="Back_Clicked"
+                        Style="{StaticResource SfButtonStyle}"
+                        Text="Cancel" />
+                <buttons:SfButton
+                        Grid.Column="1"
+                        x:Name="Save"
+                        Margin="0,16"
+                        Command="{Binding SaveCommand}"
+                        Style="{StaticResource SfButtonStyle}"
+                        Text="Save" />
             </Grid>
         </StackLayout>
+        </Grid>
     </ContentPage.Content>
 </ContentPage>
