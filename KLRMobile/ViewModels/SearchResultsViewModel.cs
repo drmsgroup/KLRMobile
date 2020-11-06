@@ -26,6 +26,19 @@ namespace KLRMobile.ViewModels
         public PagingParameterModel PagingParameterModel {get; set;}
 
         public string Type { get; set; }
+        public bool noResultsVisible { get; set; }
+
+        public bool NoResultsVisible {
+            get
+            {
+                return noResultsVisible;
+            }
+            set
+            {
+                noResultsVisible = value;
+                OnPropertyChanged(nameof(NoResultsVisible));
+            }
+        }
 
         public SearchResultsViewModel(string type)
         {
@@ -42,34 +55,40 @@ namespace KLRMobile.ViewModels
 
         private async void OnSearch(object obj)
         {
-            IEnumerable<LRMRResultItem> items;
-            switch (Type) {
-                case "Marriage":
-                    items = await MarriageLicenseDataStore.GetItemsPagedAsync(PagingParameterModel);
-                    break;
-                case "LandRecords":
-                    items = await LandRecordsDataStore.GetItemsPagedAsync(PagingParameterModel);
-                    break;
-                default:
-                    items = await MarriageLicenseDataStore.GetItemsPagedAsync(PagingParameterModel);
-                    break;
-            }
-            
-            if (items != null)
-            {
-                switch (Type) {
+            if (!String.IsNullOrEmpty(PagingParameterModel.LastName)){
+                IEnumerable<LRMRResultItem> items;
+                switch (Type)
+                {
                     case "Marriage":
-                        Items = items.ToList();
-                        Application.Current.MainPage = new NavigationPage(new SearchResults("Marriage", this));
+                        items = await MarriageLicenseDataStore.GetItemsPagedAsync(PagingParameterModel);
                         break;
                     case "LandRecords":
-                        Items = items.ToList();
-                        Application.Current.MainPage = new NavigationPage(new SearchResults("LandRecords", this));
+                        items = await LandRecordsDataStore.GetItemsPagedAsync(PagingParameterModel);
                         break;
                     default:
-                            break;
+                        items = await MarriageLicenseDataStore.GetItemsPagedAsync(PagingParameterModel);
+                        break;
                 }
-                
+
+                if (items.Count() > 0) {
+                    Items.Clear();
+                    switch (Type) {
+                        case "Marriage":
+                            Items = items.ToList();
+                            Application.Current.MainPage = new NavigationPage(new SearchResults("Marriage", this));
+                            break;
+                        case "LandRecords":
+                            Items = items.ToList();
+                            Application.Current.MainPage = new NavigationPage(new SearchResults("LandRecords", this));
+                            break;
+                        default:
+                            break;
+                    }
+                } else {
+                    NoResultsVisible = true;
+                }
+            } else {
+                NoResultsVisible = true;
             }
         }
 

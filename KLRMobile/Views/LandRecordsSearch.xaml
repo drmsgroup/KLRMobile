@@ -75,6 +75,14 @@
                 <border:SfBorder Style="{StaticResource SfBorderStyle}">
                     <combobox:SfComboBox x:Name="BookName" HeightRequest="40" Watermark="Book Name" Style="{StaticResource ComboBoxStyle}" />
                 </border:SfBorder>
+                <Label
+                x:Name="ValidationLabel"
+                Margin="15,-5,0,0"
+                FontSize="18"
+                IsVisible="{Binding NoResultsVisible}"
+                Text="No Results"
+                TextColor="{DynamicResource Red}"
+                VerticalOptions="FillAndExpand" />
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition />

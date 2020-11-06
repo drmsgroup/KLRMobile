@@ -63,6 +63,14 @@
             <border:SfBorder Style="{StaticResource SfBorderStyle}">
                 <local:ExtendedDatePicker Style="{StaticResource EntryStyle}" PlaceHolder="End Date" />
             </border:SfBorder>
+            <Label
+                x:Name="ValidationLabel"
+                Margin="15,-5,0,0"
+                FontSize="18"
+                IsVisible="{Binding NoResultsVisible}"
+                Text="No Results"
+                TextColor="{DynamicResource Red}"
+                VerticalOptions="FillAndExpand" />
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition />
