@@ -111,8 +111,9 @@ namespace KLRMobile.ViewModels
         private async void OnSearch(object obj)
         {
             if (!String.IsNullOrEmpty(DebtorLast)) {
-                var model = new PagingParameterModel();
-                model.PageNumber = 1;
+                var model = new PagingParameterModel {
+                    PageNumber = 1
+                };
                 var items = await TitleLienDataStore.GetItemsPagedAsync(model);
                 if (items.Count() > 0)  {
                     Items.Clear();
