@@ -39,28 +39,28 @@
                         x:Name="LastName"
                         Placeholder="Debtor Last"
                         Style="{StaticResource EntryStyle}"
-                        Text="{Binding PagingParameterModel.LastName}" />
+                        Text="{Binding PagingModel.LastName}" />
                 </border:SfBorder>
                 <border:SfBorder Style="{StaticResource SfBorderStyle}">
                     <control:BorderlessEntry
                         x:Name="FirstName"
                         Placeholder="Debtor First"
                         Style="{StaticResource EntryStyle}"
-                        Text="{Binding PagingParameterModel.FirstName}" />
+                        Text="{Binding PagingModel.FirstName}" />
                 </border:SfBorder>
                 <border:SfBorder Style="{StaticResource SfBorderStyle}">
                     <control:BorderlessEntry
                         x:Name="HolderLast"
                         Placeholder="Holder Last"
                         Style="{StaticResource EntryStyle}"
-                        Text="{Binding PagingParameterModel.HolderLast}" />
+                        Text="{Binding PagingModel.HolderLast}" />
                 </border:SfBorder>
                 <border:SfBorder Style="{StaticResource SfBorderStyle}">
                     <control:BorderlessEntry
                         x:Name="HolderFirst"
                         Placeholder="Holder First"
                         Style="{StaticResource EntryStyle}"
-                        Text="{Binding PagingParameterModel.HolderFirst}" />
+                        Text="{Binding PagingModel.HolderFirst}" />
                 </border:SfBorder>
                 <border:SfBorder Style="{StaticResource SfBorderStyle}">
                     <local:ExtendedDatePicker Style="{StaticResource EntryStyle}" PlaceHolder="Start Date" />
@@ -76,14 +76,14 @@
                         x:Name="FileNumber"
                         Placeholder="File Number"
                         Style="{StaticResource EntryStyle}"
-                        Text="{Binding PagingParameterModel.FileNumber}" />
+                        Text="{Binding PagingModel.FileNumber}" />
                 </border:SfBorder>
                 <border:SfBorder Style="{StaticResource SfBorderStyle}">
                     <control:BorderlessEntry
                         x:Name="VINNumber"
                         Placeholder="VIN Number"
                         Style="{StaticResource EntryStyle}"
-                        Text="{Binding PagingParameterModel.VINNumber}" />
+                        Text="{Binding PagingModel.VINNumber}" />
                 </border:SfBorder>
                 <Label
                 x:Name="ValidationLabel"

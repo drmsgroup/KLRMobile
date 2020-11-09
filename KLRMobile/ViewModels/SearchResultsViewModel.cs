@@ -18,12 +18,15 @@ namespace KLRMobile.ViewModels
         private LRMRResultItem _selectedItem;
         private County _selectedCounty;
 
-        public List<LRMRResultItem> Items { get; set; }
+        public ObservableCollection<LRMRResultItem> Items { get; set; }
         public ObservableCollection<County> Counties { get; }
         public Command AddItemCommand { get; }
         public Command<LRMRResultItem> ItemTapped { get; }
         public Command SearchCommand { get; }
+        public Command NextResultsCommand { get; }
+        public Command PreviousResultsCommand { get; }
         public PagingParameterModel PagingParameterModel {get; set;}
+        public int CurrentPage { get; set; }
 
         public string Type { get; set; }
         public bool noResultsVisible { get; set; }
@@ -44,8 +47,10 @@ namespace KLRMobile.ViewModels
         {
             Type = type;
             SearchCommand = new Command(OnSearch);
+            NextResultsCommand = new Command(NextResults);
+            PreviousResultsCommand = new Command(PreviousResults);
             Title = "Results";
-            Items = new List<LRMRResultItem>();
+            Items = new ObservableCollection<LRMRResultItem>();
             Counties = new ObservableCollection<County>();
             ItemTapped = new Command<LRMRResultItem>(OnItemSelected);
 
@@ -56,29 +61,32 @@ namespace KLRMobile.ViewModels
         private async void OnSearch(object obj)
         {
             if (!String.IsNullOrEmpty(PagingParameterModel.LastName)){
+                var model = new PagingParameterModel {
+                    PageNumber = 1
+                };
                 IEnumerable<LRMRResultItem> items;
-                switch (Type)
-                {
+                switch (Type) {
                     case "Marriage":
-                        items = await MarriageLicenseDataStore.GetItemsPagedAsync(PagingParameterModel);
+                        items = await MarriageLicenseDataStore.GetItemsPagedAsync(model);
                         break;
                     case "LandRecords":
-                        items = await LandRecordsDataStore.GetItemsPagedAsync(PagingParameterModel);
+                        items = await LandRecordsDataStore.GetItemsPagedAsync(model);
                         break;
                     default:
-                        items = await MarriageLicenseDataStore.GetItemsPagedAsync(PagingParameterModel);
+                        items = await MarriageLicenseDataStore.GetItemsPagedAsync(model);
                         break;
                 }
-
+                Items.Clear();
+                foreach (var item in items) {
+                    Items.Add(item);
+                }
+                CurrentPage = model.PageNumber;
                 if (items.Count() > 0) {
-                    Items.Clear();
                     switch (Type) {
                         case "Marriage":
-                            Items = items.ToList();
                             Application.Current.MainPage = new NavigationPage(new SearchResults("Marriage", this));
                             break;
                         case "LandRecords":
-                            Items = items.ToList();
                             Application.Current.MainPage = new NavigationPage(new SearchResults("LandRecords", this));
                             break;
                         default:
@@ -113,6 +121,85 @@ namespace KLRMobile.ViewModels
             set
             {
                 SetProperty(ref _selectedCounty, value);
+            }
+        }
+
+        public async void NextResults()
+        {
+            if (!String.IsNullOrEmpty(PagingParameterModel.LastName))
+            {
+                PagingParameterModel.PageNumber++;
+                IEnumerable<LRMRResultItem> items;
+                switch (Type)
+                {
+                    case "Marriage":
+                        items = await MarriageLicenseDataStore.GetItemsPagedAsync(PagingParameterModel);
+                        break;
+                    case "LandRecords":
+                        items = await LandRecordsDataStore.GetItemsPagedAsync(PagingParameterModel);
+                        break;
+                    default:
+                        items = await MarriageLicenseDataStore.GetItemsPagedAsync(PagingParameterModel);
+                        break;
+                }
+                if (items.Count() > 0)
+                {
+                    Items.Clear();
+                    items = items.Where(i => i.FirstParty.ToLower().Contains(PagingParameterModel.LastName.ToLower())).ToList();
+                    foreach (var item in items)
+                    {
+                        Items.Add(item);
+                    }
+                    CurrentPage = PagingParameterModel.PageNumber;
+                }
+                else
+                {
+                    NoResultsVisible = true;
+                }
+            }
+            else
+            {
+                NoResultsVisible = true;
+            }
+        }
+
+        public async void PreviousResults()
+        {
+            Items.Clear();
+            IEnumerable<LRMRResultItem> items;
+            switch (Type)
+            {
+                case "Marriage":
+                    items = await MarriageLicenseDataStore.GetItemsPagedAsync(PagingParameterModel);
+                    break;
+                case "LandRecords":
+                    items = await LandRecordsDataStore.GetItemsPagedAsync(PagingParameterModel);
+                    break;
+                default:
+                    items = await MarriageLicenseDataStore.GetItemsPagedAsync(PagingParameterModel);
+                    break;
+            }
+            if (!String.IsNullOrEmpty(PagingParameterModel.LastName))
+            {
+                PagingParameterModel.PageNumber--;
+                if (items.Count() > 0)
+                {
+                    Items.Clear();
+                    items = items.Where(i => i.FirstParty.ToLower().Contains(PagingParameterModel.LastName.ToLower())).ToList();
+                    foreach (var item in items)
+                    {
+                        Items.Add(item);
+                    }
+                    CurrentPage = PagingParameterModel.PageNumber;
+                }
+                else
+                {
+                    NoResultsVisible = true;
+                }
+            }
+            else
+            {
+                NoResultsVisible = true;
             }
         }
 

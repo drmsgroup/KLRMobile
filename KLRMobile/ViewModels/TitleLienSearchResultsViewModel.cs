@@ -110,14 +110,14 @@ namespace KLRMobile.ViewModels
 
         private async void OnSearch(object obj)
         {
-            if (!String.IsNullOrEmpty(DebtorLast)) {
+            if (!String.IsNullOrEmpty(PagingModel.LastName)) {
                 var model = new PagingParameterModel {
                     PageNumber = 1
                 };
                 var items = await TitleLienDataStore.GetItemsPagedAsync(model);
                 if (items.Count() > 0)  {
                     Items.Clear();
-                    items = items.Where(i => i.DebtorLast.ToLower() == DebtorLast.ToLower()).ToList();
+                    items = items.Where(i => i.DebtorLast.ToLower().Contains(PagingModel.LastName.ToLower())).ToList();
                     foreach (var item in items) {
                         Items.Add(item);
                     }
@@ -133,14 +133,14 @@ namespace KLRMobile.ViewModels
 
         public async void PreviousResults()
         {
-            if (!String.IsNullOrEmpty(DebtorLast))
+            if (!String.IsNullOrEmpty(PagingModel.LastName))
             {
                 PagingModel.PageNumber--;
                 var items = await TitleLienDataStore.GetItemsPagedAsync(PagingModel);
                 if (items.Count() > 0)
                 {
                     Items.Clear();
-                    items = items.Where(i => i.DebtorLast.ToLower() == DebtorLast.ToLower()).ToList();
+                    items = items.Where(i => i.DebtorLast.ToLower().Contains(PagingModel.LastName.ToLower())).ToList();
                     foreach (var item in items)
                     {
                         Items.Add(item);
@@ -160,12 +160,12 @@ namespace KLRMobile.ViewModels
 
         public async void NextResults()
         {
-            if (!String.IsNullOrEmpty(DebtorLast)) {
+            if (!String.IsNullOrEmpty(PagingModel.LastName)) {
                 PagingModel.PageNumber++;
                 var items = await TitleLienDataStore.GetItemsPagedAsync(PagingModel);
                 if (items.Count() > 0) {
                     Items.Clear();
-                    items = items.Where(i => i.DebtorLast.ToLower() == DebtorLast.ToLower()).ToList();
+                    items = items.Where(i => i.DebtorLast.ToLower().Contains(PagingModel.LastName.ToLower())).ToList();
                     foreach (var item in items)
                     {
                         Items.Add(item);
