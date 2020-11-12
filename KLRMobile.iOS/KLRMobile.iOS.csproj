@@ -143,6 +143,30 @@
     <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Contents.json">
       <Visible>false</Visible>
     </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\image-available.imageset\Contents.json">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\image-available.imageset\image-available.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\image-available.imageset\image-available1.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\image-available.imageset\image-available2.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\image-unavailable.imageset\Contents.json">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\image-unavailable.imageset\no-image-available.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\image-unavailable.imageset\no-image-available1.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\image-unavailable.imageset\no-image-available2.png">
+      <Visible>false</Visible>
+    </ImageAsset>
     <ImageAsset Include="Assets.xcassets\Logo.imageset\Contents.json">
       <Visible>false</Visible>
     </ImageAsset>
@@ -199,10 +223,16 @@
   <ItemGroup>
     <BundleResource Include="Resources\drmsfinallogo.png" />
   </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\image-available.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\no-image-available.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
   <ProjectExtensions>
     <VisualStudio>
-      <UserProperties XamarinHotReloadUnhandledDeviceExceptionKLRMobileiOSHideInfoBar="True" XamarinHotReloadDebuggerTimeoutExceptionKLRMobileiOSHideInfoBar="True" XamarinHotReloadGenericExceptionInfoBarKLRMobileiOSHideInfoBar="True" />
+      <UserProperties XamarinHotReloadGenericExceptionInfoBarKLRMobileiOSHideInfoBar="True" XamarinHotReloadDebuggerTimeoutExceptionKLRMobileiOSHideInfoBar="True" XamarinHotReloadUnhandledDeviceExceptionKLRMobileiOSHideInfoBar="True" />
     </VisualStudio>
   </ProjectExtensions>
 </Project>

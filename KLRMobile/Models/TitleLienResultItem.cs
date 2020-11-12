@@ -1,4 +1,5 @@
 ﻿using System;
+using Xamarin.Forms;
 
 namespace KLRMobile.Models
 {
@@ -18,5 +19,6 @@ namespace KLRMobile.Models
         public string IndexedBy { get; set; }
         public DateTime LastUpdated { get; set; }
         public DateTime DateFiled { get; set; }
+        public string HasImage { get; set; }
     }
 }

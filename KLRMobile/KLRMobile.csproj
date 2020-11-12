@@ -7,12 +7,16 @@
 
   <ItemGroup>
     <None Remove="Assets\GIS Succinctly.pdf" />
+    <None Remove="Assets\image-available.png" />
     <None Remove="Assets\mortgage.pdf" />
+    <None Remove="Assets\no-image-available.png" />
   </ItemGroup>
 
   <ItemGroup>
     <EmbeddedResource Include="Assets\GIS Succinctly.pdf" />
+    <EmbeddedResource Include="Assets\image-available.png" />
     <EmbeddedResource Include="Assets\mortgage.pdf" />
+    <EmbeddedResource Include="Assets\no-image-available.png" />
   </ItemGroup>
 
   <ItemGroup>

@@ -21,10 +21,10 @@ namespace KLRMobile.ViewModels
 
         public string DebtorLast { get; set; }
 
-        public List<TitleLienResultItem> Items { get; set; }
+        public ObservableCollection<TitleLienResultItem> Items { get; set; }
         public ObservableCollection<County> Counties { get; }
         public Command LoadItemsCommand { get; }
-        public Command AddItemCommand { get;  }
+        public Command AddItemCommand { get; }
         public Command<TitleLienResultItem> ItemTapped { get; }
         public Command SearchCommand { get; }
         public Command NextResultsCommand { get; }
@@ -52,7 +52,7 @@ namespace KLRMobile.ViewModels
             PreviousResultsCommand = new Command(PreviousResults);
             Title = "Results";
             Counties = new ObservableCollection<County>();
-            Items = new List<TitleLienResultItem>();
+            Items = new ObservableCollection<TitleLienResultItem>();
             LoadItemsCommand = new Command(async () => await ExecuteLoadItemsCommand());
 
             ItemTapped = new Command<TitleLienResultItem>(OnItemSelected);
