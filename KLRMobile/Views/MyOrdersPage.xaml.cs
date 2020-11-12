@@ -1,4 +1,5 @@
 ﻿
+using KLRMobile.ViewModels;
 using Xamarin.Forms;
 using Xamarin.Forms.Internals;
 using Xamarin.Forms.Xaml;
@@ -10,14 +11,15 @@ namespace KLRMobile.Views
     /// </summary>
     [Preserve(AllMembers = true)]
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class MyOrdersPage
+    public partial class MyOrdersPage : ContentPage
     {
-        /// <summary>
-        /// Initializes a new instance of the <see cref="MyOrdersPage" /> class.
-        /// </summary>
-        public MyOrdersPage()
+        readonly TitleLienSearchResultsViewModel _viewModel;
+        public MyOrdersPage(TitleLienSearchResultsViewModel viewModel)
         {
             InitializeComponent();
+
+            BindingContext = viewModel;
+            _viewModel = viewModel;
         }
     }
 }

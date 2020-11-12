@@ -16,13 +16,13 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Syncfusion.Xamarin.Buttons" Version="18.3.0.47" />
-    <PackageReference Include="Syncfusion.Xamarin.Core" Version="18.3.0.47" />
-    <PackageReference Include="Syncfusion.Xamarin.SfComboBox" Version="18.3.0.47" />
-    <PackageReference Include="Syncfusion.Xamarin.SfListView" Version="18.3.0.47" />
-    <PackageReference Include="Syncfusion.Xamarin.SfPdfViewer" Version="18.3.0.47" />
-    <PackageReference Include="Syncfusion.Xamarin.SfPicker" Version="18.3.0.47" />
-    <PackageReference Include="Syncfusion.Xamarin.SfTabView" Version="18.3.0.47" />
+    <PackageReference Include="Syncfusion.Xamarin.Buttons" Version="18.3.0.48" />
+    <PackageReference Include="Syncfusion.Xamarin.Core" Version="18.3.0.48" />
+    <PackageReference Include="Syncfusion.Xamarin.SfComboBox" Version="18.3.0.48" />
+    <PackageReference Include="Syncfusion.Xamarin.SfListView" Version="18.3.0.48" />
+    <PackageReference Include="Syncfusion.Xamarin.SfPdfViewer" Version="18.3.0.48" />
+    <PackageReference Include="Syncfusion.Xamarin.SfPicker" Version="18.3.0.48" />
+    <PackageReference Include="Syncfusion.Xamarin.SfTabView" Version="18.3.0.48" />
     <PackageReference Include="System.Configuration.ConfigurationManager" Version="5.0.0" />
     <PackageReference Include="System.Data.SqlClient" Version="4.8.2" />
     <PackageReference Include="Xamarin.Forms" Version="4.8.0.1560" />  

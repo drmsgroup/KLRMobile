@@ -21,7 +21,7 @@ namespace KLRMobile.ViewModels
 
         public string DebtorLast { get; set; }
 
-        public ObservableCollection<TitleLienResultItem> Items { get; set; }
+        public List<TitleLienResultItem> Items { get; set; }
         public ObservableCollection<County> Counties { get; }
         public Command LoadItemsCommand { get; }
         public Command AddItemCommand { get;  }
@@ -52,7 +52,7 @@ namespace KLRMobile.ViewModels
             PreviousResultsCommand = new Command(PreviousResults);
             Title = "Results";
             Counties = new ObservableCollection<County>();
-            Items = new ObservableCollection<TitleLienResultItem>();
+            Items = new List<TitleLienResultItem>();
             LoadItemsCommand = new Command(async () => await ExecuteLoadItemsCommand());
 
             ItemTapped = new Command<TitleLienResultItem>(OnItemSelected);
@@ -121,7 +121,7 @@ namespace KLRMobile.ViewModels
                     foreach (var item in items) {
                         Items.Add(item);
                     }
-                    Application.Current.MainPage = new NavigationPage(new TitleLienSearchResults(this));
+                    Application.Current.MainPage = new NavigationPage(new MyOrdersPage(this));
                     CurrentPage = model.PageNumber;
                 } else {
                     NoResultsVisible = true;

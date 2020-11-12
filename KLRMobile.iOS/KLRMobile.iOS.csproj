@@ -167,25 +167,25 @@
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Syncfusion.Xamarin.Buttons">
-      <Version>18.3.0.47</Version>
+      <Version>18.3.0.48</Version>
     </PackageReference>
     <PackageReference Include="Syncfusion.Xamarin.Core">
-      <Version>18.3.0.47</Version>
+      <Version>18.3.0.48</Version>
     </PackageReference>
     <PackageReference Include="Syncfusion.Xamarin.SfComboBox">
-      <Version>18.3.0.47</Version>
+      <Version>18.3.0.48</Version>
     </PackageReference>
     <PackageReference Include="Syncfusion.Xamarin.SfListView">
-      <Version>18.3.0.47</Version>
+      <Version>18.3.0.48</Version>
     </PackageReference>
     <PackageReference Include="Syncfusion.Xamarin.SfPdfViewer">
-      <Version>18.3.0.47</Version>
+      <Version>18.3.0.48</Version>
     </PackageReference>
     <PackageReference Include="Syncfusion.Xamarin.SfPicker">
-      <Version>18.3.0.47</Version>
+      <Version>18.3.0.48</Version>
     </PackageReference>
     <PackageReference Include="Syncfusion.Xamarin.SfTabView">
-      <Version>18.3.0.47</Version>
+      <Version>18.3.0.48</Version>
     </PackageReference>
     <PackageReference Include="Xamarin.Forms" Version="4.8.0.1560" />
     <PackageReference Include="Xamarin.Essentials" Version="1.5.3.2" />
@@ -202,7 +202,7 @@
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
   <ProjectExtensions>
     <VisualStudio>
-      <UserProperties XamarinHotReloadGenericExceptionInfoBarKLRMobileiOSHideInfoBar="True" XamarinHotReloadDebuggerTimeoutExceptionKLRMobileiOSHideInfoBar="True" XamarinHotReloadUnhandledDeviceExceptionKLRMobileiOSHideInfoBar="True" />
+      <UserProperties XamarinHotReloadUnhandledDeviceExceptionKLRMobileiOSHideInfoBar="True" XamarinHotReloadDebuggerTimeoutExceptionKLRMobileiOSHideInfoBar="True" XamarinHotReloadGenericExceptionInfoBarKLRMobileiOSHideInfoBar="True" />
     </VisualStudio>
   </ProjectExtensions>
 </Project>
