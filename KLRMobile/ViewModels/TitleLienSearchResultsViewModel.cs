@@ -121,7 +121,7 @@ namespace KLRMobile.ViewModels
                     foreach (var item in items) {
                         Items.Add(item);
                     }
-                    Application.Current.MainPage = new NavigationPage(new MyOrdersPage(this));
+                    Application.Current.MainPage = new NavigationPage(new TitleLienSearchResults(this));
                     CurrentPage = model.PageNumber;
                 } else {
                     NoResultsVisible = true;

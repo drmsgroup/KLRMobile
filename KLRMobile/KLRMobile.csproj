@@ -37,11 +37,14 @@
     <Compile Update="Views\LoginPage.xaml.cs">
       <DependentUpon>LoginPage.xaml</DependentUpon>
     </Compile>
+    <Compile Update="Views\TitleLienSearchResults.xaml.cs">
+      <DependentUpon>TitleLienSearchResults.xaml</DependentUpon>
+    </Compile>
     <Compile Update="Views\SettingsPage.xaml.cs">
       <DependentUpon>SettingsPage.xaml</DependentUpon>
     </Compile>
-    <Compile Update="Views\TitleLienSearchResults.xaml.cs">
-      <DependentUpon>TitleLienSearchResults.xaml</DependentUpon>
+    <Compile Update="Views\TitleLienSearchResultsOLD.xaml.cs">
+      <DependentUpon>TitleLienSearchResultsOLD.xaml</DependentUpon>
     </Compile>
     <Compile Update="Views\SearchResults.xaml.cs">
       <DependentUpon>SearchResults.xaml</DependentUpon>
