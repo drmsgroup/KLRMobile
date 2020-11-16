@@ -21,6 +21,7 @@ namespace KLRMobile
 			Syncfusion.XForms.iOS.Border.SfBorderRenderer.Init();
 			Syncfusion.XForms.iOS.Buttons.SfButtonRenderer.Init();
 			Syncfusion.XForms.iOS.ComboBox.SfComboBoxRenderer.Init();
+			Syncfusion.ListView.XForms.iOS.SfListViewRenderer.Init();
 			return base.FinishedLaunching(app, options);
 		}
 	}

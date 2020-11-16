@@ -1,108 +1,258 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="KLRMobile.Views.TitleLienSearchResults"
-             Title="{Binding Title}"
-             xmlns:local="clr-namespace:KLRMobile.ViewModels"  
-             xmlns:model="clr-namespace:KLRMobile.Models"  
-             x:Name="BrowseItemsPage">
+<ContentPage
+    x:Class="KLRMobile.Views.TitleLienSearchResults"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:converter="clr-namespace:KLRMobile.Converters"
+    xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms"
+    xmlns:listView="clr-namespace:Syncfusion.ListView.XForms;assembly=Syncfusion.SfListView.XForms"
+    BackgroundColor="{DynamicResource Gray-300}"
+    NavigationPage.HasNavigationBar="False">
 
-    <ContentPage.ToolbarItems>
-        <ToolbarItem Text="Back" Clicked="Back_Clicked" />
-    </ContentPage.ToolbarItems>
-    <!--
-      x:DataType enables compiled bindings for better performance and compile time validation of binding expressions.
-      https://docs.microsoft.com/xamarin/xamarin-forms/app-fundamentals/data-binding/compiled-bindings
-    -->
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <converter:StringToColorConverter x:Key="StringToColorConverter" />
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Styles.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </ContentPage.Resources>
     <StackLayout>
         <StackLayout VerticalOptions="FillAndExpand">
-            <CollectionView x:Name="ItemsListView"
-                            ItemsSource="{Binding Items}"
-                            SelectionMode="None">
-                <CollectionView.ItemTemplate>
+            <listView:SfListView
+                x:Name="myOrderList"
+                AutoFitMode="DynamicHeight"
+                BackgroundColor="{DynamicResource Gray-500}"
+                ItemsSource="{Binding Items}"
+                SelectionMode="None"
+                TapCommand="{Binding ItemSelectedCommand}"
+                VerticalOptions="Start">
+
+                <listView:SfListView.ItemTemplate>
                     <DataTemplate>
-                        <StackLayout Padding="10" x:DataType="model:TitleLienResultItem">
-                            <Grid>
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="160" />
-                                    <ColumnDefinition Width="120" />
-                                    <ColumnDefinition Width="*" />
-                                </Grid.ColumnDefinitions>
-                                <Grid.RowDefinitions>
-                                    <RowDefinition />
-                                    <RowDefinition />
-                                </Grid.RowDefinitions>
-                                <Label Grid.Column="0" Grid.Row="0" Text="{Binding DebtorLast} {Binding DebtorFirst}" 
-                                        LineBreakMode="NoWrap" 
-                                        Style="{DynamicResource ListItemTextStyle}" 
-                                        FontSize="16" HorizontalOptions="StartAndExpand" />
-                                <Label Grid.Column="0" Grid.Row="1" Text="{Binding LienHolder}" 
-                                        LineBreakMode="NoWrap"
-                                        Style="{DynamicResource ListItemDetailTextStyle}"
-                                        FontSize="13" HorizontalOptions="StartAndExpand" />
-                                <Label Grid.Column="1" Grid.Row="0" Text="{Binding FileNumber}"
-                                        Style="{DynamicResource ListItemDetailTextStyle}"
-                                        FontSize="16" HorizontalOptions="End" />
-                                <Label Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="2" Text="{Binding VINNumber}"
-                                        Style="{DynamicResource ListItemDetailTextStyle}" LineBreakMode="NoWrap"
-                                        FontSize="16" HorizontalOptions="StartAndExpand" />
-                                <Label Grid.Column="2" Grid.Row="0" Text="{Binding DateFiled, StringFormat='{}{0:d}'}"
-                                        Style="{DynamicResource ListItemDetailTextStyle}"
-                                        FontSize="16" HorizontalOptions="End" />
-                            </Grid>
-                            <Expander x:Name="ExpandedDetails">
-                                <Expander.Header>
-                                    <StackLayout>
-                                        <Grid>
-                                            <Label HeightRequest="30" BackgroundColor="black" Text="Details" TextColor="White" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" />
-                                        </Grid>
-                                    </StackLayout>
-                                </Expander.Header>
-                                <Grid BackgroundColor="White">
-                                    <BoxView BackgroundColor="Black"  />
-                                    <Grid BackgroundColor="White" Margin="1">
-                                        <Grid.ColumnDefinitions>
-                                            <ColumnDefinition Width="100" />
-                                            <ColumnDefinition Width="100" />
-                                            <ColumnDefinition Width="100" />
-                                            <ColumnDefinition Width="*" />
-                                        </Grid.ColumnDefinitions>
-                                        <Grid.RowDefinitions>
-                                            <RowDefinition Height="12" />
-                                            <RowDefinition Height="12" />
-                                            <RowDefinition Height="12" />
-                                            <RowDefinition Height="12" />
-                                            <RowDefinition Height="12" />
-                                            <RowDefinition Height="12" />
-                                        </Grid.RowDefinitions>
-                                        <Label FontSize="Micro" Text="Security ID: " FontAttributes="Bold" Grid.Column="0" Grid.Row="0" />
-                                        <Label FontSize="Micro" Text="Security Type: " FontAttributes="Bold" Grid.Column="0" Grid.Row="1" />
-                                        <Label FontSize="Micro" Text="Date Filed: " FontAttributes="Bold" Grid.Column="0" Grid.Row="2" />
-                                        <Label FontSize="Micro" Text="File Number: " FontAttributes="Bold" Grid.Column="0" Grid.Row="3" />
-                                        <Label FontSize="Micro" Text="Title Number: " FontAttributes="Bold" Grid.Column="0" Grid.Row="4" />
-                                        <Label FontSize="Micro" Text="VIN Number: " FontAttributes="Bold" Grid.Column="0" Grid.Row="5" />
-                                        <Label FontSize="Micro" LineBreakMode="TailTruncation" Text="{Binding SecurityId}" Grid.Column="1" Grid.Row="0" />
-                                        <Label FontSize="Micro" Text="{Binding SecurityType}" Grid.Column="1" Grid.Row="1" />
-                                        <Label FontSize="Micro" Text="{Binding DateFiled, StringFormat='{}{0:d}'}" Grid.Column="1" Grid.Row="2" />
-                                        <Label FontSize="Micro" Text="{Binding FileNumber}" Grid.Column="1" Grid.Row="3" />
-                                        <Label FontSize="Micro" Text="{Binding TitleNumber}" Grid.Column="1" Grid.Row="4" />
-                                        <Label FontSize="Micro" Text="{Binding VINNumber}" Grid.ColumnSpan="2" Grid.Column="1" Grid.Row="5" />
-                                        <Label FontSize="Micro" Text="Indexed By: " FontAttributes="Bold" Grid.Column="2" Grid.Row="0" />
-                                        <Label FontSize="Micro" Text="Last Updated: " FontAttributes="Bold" Grid.Column="2" Grid.Row="1" />
-                                        <Label FontSize="Micro" Text="Updated By: " FontAttributes="Bold" Grid.Column="2" Grid.Row="2" />
-                                        <Label FontSize="Micro" Text="Description: " FontAttributes="Bold" Grid.Column="2" Grid.Row="3" />
-                                        <Label FontSize="Micro" Text="{Binding IndexedBy}" Grid.Column="3" Grid.Row="0" />
-                                        <Label FontSize="Micro" Text="{Binding LastUpdated, StringFormat='{}{0:d}'}" Grid.Column="3" Grid.Row="1" />
-                                        <Label FontSize="Micro" Text="{Binding UpdatedBy}" Grid.Column="3" Grid.Row="2" />
-                                        <Label FontSize="Micro" Text="{Binding Description}" Grid.Column="3" Grid.Row="3" />
-                                        <Button HeightRequest="20" Text="Image" Grid.Column="3" Grid.RowSpan="2" Grid.Row="4" Clicked="ShowPdf" />
-                                    </Grid>
-                                </Grid>
-                            </Expander>
-                        </StackLayout>
+                        <Grid
+                        Margin="0,16,0,0"
+                        BackgroundColor="{DynamicResource Gray-White}"
+                        ColumnSpacing="0"
+                        RowSpacing="0">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="*" />
+                            </Grid.RowDefinitions>
+
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+                            <Image
+                            Grid.Row="0"
+                            Grid.RowSpan="6"
+                            Grid.Column="0"
+                            Margin="16,8,16,16"
+                            Aspect="Fill"
+                            BackgroundColor="{DynamicResource Gray-200}"
+                            HeightRequest="80"
+                            WidthRequest="80"
+                            Source="{Binding HasImage}">
+                                <Image.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="ShowPdf" NumberOfTapsRequired="1" />
+                                </Image.GestureRecognizers>
+                            </Image>
+                            <Label
+                                Grid.Row="0"
+                                Grid.Column="1"
+                                FontFamily="{StaticResource Montserrat-SemiBold}"
+                                FontSize="10"
+                                HorizontalOptions="StartAndExpand"
+                                LineBreakMode="TailTruncation"
+                                LineHeight="1.5"
+                                MaxLines="1"
+                                Text="SecurityId:"
+                                TextColor="{DynamicResource Gray-900}" />
+                            <Label
+                                Grid.Row="0"
+                                Grid.Column="2"
+                                FontFamily="{StaticResource Montserrat-Medium}"
+                                FontSize="10"
+                                HorizontalOptions="StartAndExpand"
+                                LineBreakMode="TailTruncation"
+                                LineHeight="1.5"
+                                MaxLines="1"
+                                Text="{Binding SecurityId}"
+                                TextColor="{DynamicResource Gray-900}" />
+                            <Label
+                                Grid.Row="1"
+                                Grid.Column="1"
+                                FontFamily="{StaticResource Montserrat-SemiBold}"
+                                FontSize="10"
+                                HorizontalOptions="StartAndExpand"
+                                LineHeight="1.5"
+                                Text="Security Type:"
+                                TextColor="{DynamicResource Gray-900}" />
+                            <Label
+                                Grid.Row="1"
+                                Grid.Column="2"
+                                FontFamily="{StaticResource Montserrat-Medium}"
+                                FontSize="10"
+                                HorizontalOptions="StartAndExpand"
+                                LineHeight="1.5"
+                                Text="{Binding SecurityType}"
+                                TextColor="{DynamicResource Gray-900}" />
+                            <Label
+                                Grid.Row="2"
+                                Grid.Column="1"
+                                FontFamily="{StaticResource Montserrat-SemiBold}"
+                                FontSize="10"
+                                HorizontalOptions="StartAndExpand"
+                                LineHeight="1.5"
+                                Text="Date Filed:"
+                                TextColor="{DynamicResource Gray-900}" />
+                            <Label
+                                Grid.Row="2"
+                                Grid.Column="2"
+                                FontFamily="{StaticResource Montserrat-Medium}"
+                                FontSize="10"
+                                HorizontalOptions="StartAndExpand"
+                                LineHeight="1.5"
+                                Text="{Binding DateFiled, StringFormat='{}{0:d}'}"
+                                TextColor="{DynamicResource Gray-900}" />
+                            <Label
+                                Grid.Row="3"
+                                Grid.Column="1"
+                                FontFamily="{StaticResource Montserrat-SemiBold}"
+                                FontSize="10"
+                                HorizontalOptions="StartAndExpand"
+                                LineHeight="1.5"
+                                Text="File Number:"
+                                TextColor="{DynamicResource Gray-900}" />
+                            <Label
+                                Grid.Row="3"
+                                Grid.Column="2"
+                                FontFamily="{StaticResource Montserrat-Medium}"
+                                FontSize="10"
+                                HorizontalOptions="StartAndExpand"
+                                LineHeight="1.5"
+                                Text="{Binding FileNumber}"
+                                TextColor="{DynamicResource Gray-900}" />
+                            <Label
+                                Grid.Row="4"
+                                Grid.Column="1"
+                                FontFamily="{StaticResource Montserrat-SemiBold}"
+                                FontSize="10"
+                                HorizontalOptions="StartAndExpand"
+                                LineHeight="1.5"
+                                Text="Title Number:"
+                                TextColor="{DynamicResource Gray-900}" />
+                            <Label
+                                Grid.Row="4"
+                                Grid.Column="2"
+                                FontFamily="{StaticResource Montserrat-Medium}"
+                                FontSize="10"
+                                HorizontalOptions="StartAndExpand"
+                                LineHeight="1.5"
+                                Text="{Binding TitleNumber}"
+                                TextColor="{DynamicResource Gray-900}" />
+                            <Label
+                                Grid.Row="5"
+                                Grid.Column="1"
+                                FontFamily="{StaticResource Montserrat-SemiBold}"
+                                FontSize="10"
+                                HorizontalOptions="StartAndExpand"
+                                LineHeight="1.5"
+                                Text="VIN Number:"
+                                TextColor="{DynamicResource Gray-900}" />
+                            <Label
+                                Grid.Row="5"
+                                Grid.Column="2"
+                                FontFamily="{StaticResource Montserrat-Medium}"
+                                FontSize="10"
+                                HorizontalOptions="StartAndExpand"
+                                LineHeight="1.5"
+                                Text="{Binding VINNumber}"
+                                TextColor="{DynamicResource Gray-900}" />
+                            <Label
+                                Grid.Row="0"
+                                Grid.Column="3"
+                                FontFamily="{StaticResource Montserrat-SemiBold}"
+                                FontSize="10"
+                                HorizontalOptions="StartAndExpand"
+                                LineHeight="1.5"
+                                Text="Indexed By:"
+                                TextColor="{DynamicResource Gray-900}" />
+                            <Label
+                                Grid.Row="0"
+                                Grid.Column="4"
+                                FontFamily="{StaticResource Montserrat-Medium}"
+                                FontSize="10"
+                                HorizontalOptions="StartAndExpand"
+                                LineHeight="1.5"
+                                Text="{Binding IndexedBy}"
+                                TextColor="{DynamicResource Gray-900}" />
+                            <Label
+                                Grid.Row="1"
+                                Grid.Column="3"
+                                FontFamily="{StaticResource Montserrat-SemiBold}"
+                                FontSize="10"
+                                HorizontalOptions="StartAndExpand"
+                                LineHeight="1.5"
+                                Text="Last Updated:"
+                                TextColor="{DynamicResource Gray-900}" />
+                            <Label
+                                Grid.Row="1"
+                                Grid.Column="4"
+                                FontFamily="{StaticResource Montserrat-Medium}"
+                                FontSize="10"
+                                HorizontalOptions="StartAndExpand"
+                                LineHeight="1.5"
+                                Text="{Binding LastUpdated, StringFormat='{}{0:d}'}"
+                                TextColor="{DynamicResource Gray-900}" />
+                            <Label
+                                Grid.Row="2"
+                                Grid.Column="3"
+                                FontFamily="{StaticResource Montserrat-SemiBold}"
+                                FontSize="10"
+                                HorizontalOptions="StartAndExpand"
+                                LineHeight="1.5"
+                                Text="Updated By:"
+                                TextColor="{DynamicResource Gray-900}" />
+                            <Label
+                                Grid.Row="2"
+                                Grid.Column="4"
+                                FontFamily="{StaticResource Montserrat-Medium}"
+                                FontSize="10"
+                                HorizontalOptions="StartAndExpand"
+                                LineHeight="1.5"
+                                Text="{Binding UpdatedBy}"
+                                TextColor="{DynamicResource Gray-900}" />
+                            <Label
+                                Grid.Row="3"
+                                Grid.Column="3"
+                                FontFamily="{StaticResource Montserrat-SemiBold}"
+                                FontSize="10"
+                                HorizontalOptions="StartAndExpand"
+                                LineHeight="1.5"
+                                Text="Description:"
+                                TextColor="{DynamicResource Gray-900}" />
+                            <Label
+                                Grid.Row="3"
+                                Grid.Column="4"
+                                FontFamily="{StaticResource Montserrat-Medium}"
+                                FontSize="10"
+                                HorizontalOptions="StartAndExpand"
+                                LineHeight="1.5"
+                                Text="{Binding Description}"
+                                TextColor="{DynamicResource Gray-900}" />
+                        </Grid>
                     </DataTemplate>
-                </CollectionView.ItemTemplate>
-            </CollectionView>
+                </listView:SfListView.ItemTemplate>
+            </listView:SfListView>
         </StackLayout>
         <StackLayout Orientation="Horizontal" VerticalOptions="EndAndExpand">
             <Grid HorizontalOptions="FillAndExpand">
@@ -110,8 +260,20 @@
                     <ColumnDefinition Width="50*" />
                     <ColumnDefinition Width="50*" />
                 </Grid.ColumnDefinitions>
-                <Button HorizontalOptions="FillAndExpand" Text="Back" Grid.Column="0" BackgroundColor="Green" Command="{Binding PreviousResultsCommand}"/>
-                <Button HorizontalOptions="FillAndExpand" Text="Next" Grid.Column="1" BackgroundColor="LightGray" TextColor="Black" Command="{Binding NextResultsCommand}" />
+                <buttons:SfButton
+                            Grid.Column="0"
+                            x:Name="Back"
+                            Margin="0,16"
+                            Command="{Binding PreviousResultsCommand}"
+                            Style="{StaticResource SfButtonStyle}"
+                            Text="Back" />
+                <buttons:SfButton
+                            Grid.Column="1"
+                            x:Name="Next"
+                            Margin="0,16"
+                            Style="{StaticResource SfButtonStyle}"
+                            Command="{Binding NextResultsCommand}"
+                            Text="Next" />
             </Grid>
         </StackLayout>
     </StackLayout>

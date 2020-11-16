@@ -7,21 +7,27 @@
 
   <ItemGroup>
     <None Remove="Assets\GIS Succinctly.pdf" />
+    <None Remove="Assets\image-available.png" />
     <None Remove="Assets\mortgage.pdf" />
+    <None Remove="Assets\no-image-available.png" />
   </ItemGroup>
 
   <ItemGroup>
     <EmbeddedResource Include="Assets\GIS Succinctly.pdf" />
+    <EmbeddedResource Include="Assets\image-available.png" />
     <EmbeddedResource Include="Assets\mortgage.pdf" />
+    <EmbeddedResource Include="Assets\no-image-available.png" />
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Syncfusion.Xamarin.Buttons" Version="18.3.0.44" />
-    <PackageReference Include="Syncfusion.Xamarin.Core" Version="18.3.0.44" />
-    <PackageReference Include="Syncfusion.Xamarin.SfComboBox" Version="18.3.0.44" />
-    <PackageReference Include="Syncfusion.Xamarin.SfPdfViewer" Version="18.3.0.44" />
-    <PackageReference Include="Syncfusion.Xamarin.SfPicker" Version="18.3.0.44" />
-    <PackageReference Include="System.Configuration.ConfigurationManager" Version="4.7.0" />
+    <PackageReference Include="Syncfusion.Xamarin.Buttons" Version="18.3.0.48" />
+    <PackageReference Include="Syncfusion.Xamarin.Core" Version="18.3.0.48" />
+    <PackageReference Include="Syncfusion.Xamarin.SfComboBox" Version="18.3.0.48" />
+    <PackageReference Include="Syncfusion.Xamarin.SfListView" Version="18.3.0.48" />
+    <PackageReference Include="Syncfusion.Xamarin.SfPdfViewer" Version="18.3.0.48" />
+    <PackageReference Include="Syncfusion.Xamarin.SfPicker" Version="18.3.0.48" />
+    <PackageReference Include="Syncfusion.Xamarin.SfTabView" Version="18.3.0.48" />
+    <PackageReference Include="System.Configuration.ConfigurationManager" Version="5.0.0" />
     <PackageReference Include="System.Data.SqlClient" Version="4.8.2" />
     <PackageReference Include="Xamarin.Forms" Version="4.8.0.1560" />  
     <PackageReference Include="Xamarin.Essentials" Version="1.5.3.2" />
@@ -31,11 +37,14 @@
     <Compile Update="Views\LoginPage.xaml.cs">
       <DependentUpon>LoginPage.xaml</DependentUpon>
     </Compile>
+    <Compile Update="Views\TitleLienSearchResults.xaml.cs">
+      <DependentUpon>TitleLienSearchResults.xaml</DependentUpon>
+    </Compile>
     <Compile Update="Views\SettingsPage.xaml.cs">
       <DependentUpon>SettingsPage.xaml</DependentUpon>
     </Compile>
-    <Compile Update="Views\TitleLienSearchResults.xaml.cs">
-      <DependentUpon>TitleLienSearchResults.xaml</DependentUpon>
+    <Compile Update="Views\TitleLienSearchResultsOLD.xaml.cs">
+      <DependentUpon>TitleLienSearchResultsOLD.xaml</DependentUpon>
     </Compile>
     <Compile Update="Views\SearchResults.xaml.cs">
       <DependentUpon>SearchResults.xaml</DependentUpon>

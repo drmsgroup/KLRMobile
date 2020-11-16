@@ -24,7 +24,7 @@ namespace KLRMobile.ViewModels
         public ObservableCollection<TitleLienResultItem> Items { get; set; }
         public ObservableCollection<County> Counties { get; }
         public Command LoadItemsCommand { get; }
-        public Command AddItemCommand { get;  }
+        public Command AddItemCommand { get; }
         public Command<TitleLienResultItem> ItemTapped { get; }
         public Command SearchCommand { get; }
         public Command NextResultsCommand { get; }
