@@ -33,7 +33,7 @@ namespace KLRMobile.Views
 
         private void Back_Clicked(object sender, EventArgs e)
         {
-            Application.Current.MainPage = new NavigationPage(new TitleLienSearch());
+            Application.Current.MainPage = new TitleLienSearchResults(_viewModel);
         }
     }
 }

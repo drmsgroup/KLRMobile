@@ -2,6 +2,7 @@
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using System.IO;
+using KLRMobile.ViewModels;
 
 namespace KLRMobile.Views
 {
@@ -9,6 +10,7 @@ namespace KLRMobile.Views
     public partial class PdfViewer : ContentPage
     {
         private Stream fileStream;
+        
         public PdfViewer(Stream docStream)
         {
             InitializeComponent();
@@ -18,15 +20,12 @@ namespace KLRMobile.Views
         protected override void OnAppearing()
         {
             base.OnAppearing();
-            
-            ////Load the PDF
-            ///
             pdfViewerControl.LoadDocument(fileStream);
         }
 
         private void Back_Clicked(object sender, EventArgs e)
         {
-            Application.Current.MainPage = new NavigationPage(new LaunchScreen());
+            Application.Current.MainPage.Navigation.PopAsync();
         }
     }
 }

@@ -61,6 +61,9 @@
                             HeightRequest="80"
                             WidthRequest="80"
                             Source="{Binding HasImage}">
+                                <Image.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="ShowPdf" NumberOfTapsRequired="1" />
+                                </Image.GestureRecognizers>
                             </Image>
                             <Label
                                 Grid.Row="0"
