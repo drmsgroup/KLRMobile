@@ -16,5 +16,6 @@ namespace KLRMobile.Models
         public string Description { get; set; }
         public DateTime DateFiled { get; set; }
         public DateTime LastUpdated { get; set; }
+        public string HasImage { get; set; }
     }
 }
