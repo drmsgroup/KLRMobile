@@ -9,6 +9,9 @@
     BackgroundColor="{DynamicResource Gray-300}"
     NavigationPage.HasNavigationBar="False">
 
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Back" Clicked="Back_Clicked" />
+    </ContentPage.ToolbarItems>
     <ContentPage.Resources>
         <ResourceDictionary>
             <converter:StringToColorConverter x:Key="StringToColorConverter" />
@@ -20,7 +23,7 @@
     <StackLayout>
         <StackLayout VerticalOptions="FillAndExpand">
             <listView:SfListView
-                x:Name="myOrderList"
+                x:Name="titleLienList"
                 AutoFitMode="DynamicHeight"
                 BackgroundColor="{DynamicResource Gray-500}"
                 ItemsSource="{Binding Items}"

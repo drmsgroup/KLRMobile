@@ -32,7 +32,7 @@ namespace KLRMobile.Views
         {
             var imageDataStore = new ImageMockDataStore();
             var images = await imageDataStore.GetItemsAsync();
-            Application.Current.MainPage = new NavigationPage(new PdfViewer(images.First().imageStream));
+            await Application.Current.MainPage.Navigation.PushAsync(new PdfViewer(images.First().imageStream));
         }
 
         protected override void OnAppearing()
