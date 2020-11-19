@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace KLRMobile.Models
 {
@@ -17,5 +18,6 @@ namespace KLRMobile.Models
         public DateTime DateFiled { get; set; }
         public DateTime LastUpdated { get; set; }
         public string HasImage { get; set; }
+        public List<Entity> Entities { get; set; }
     }
 }
