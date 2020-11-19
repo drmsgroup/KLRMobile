@@ -75,6 +75,7 @@
     <BundleResource Include="Resources\Montserrat-Medium.ttf" />
     <BundleResource Include="Resources\Montserrat-Regular.ttf" />
     <BundleResource Include="Resources\Montserrat-SemiBold.ttf" />
+    <InterfaceDefinition Include="LaunchScreen.storyboard" />
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\tab_search.png" />
@@ -179,7 +180,6 @@
     <ImageAsset Include="Assets.xcassets\Logo.imageset\drmsfinallogo2.png">
       <Visible>false</Visible>
     </ImageAsset>
-    <InterfaceDefinition Include="Resources\LaunchScreen.storyboard" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -232,7 +232,7 @@
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
   <ProjectExtensions>
     <VisualStudio>
-      <UserProperties XamarinHotReloadGenericExceptionInfoBarKLRMobileiOSHideInfoBar="True" XamarinHotReloadDebuggerTimeoutExceptionKLRMobileiOSHideInfoBar="True" XamarinHotReloadUnhandledDeviceExceptionKLRMobileiOSHideInfoBar="True" />
+      <UserProperties XamarinHotReloadUnhandledDeviceExceptionKLRMobileiOSHideInfoBar="True" XamarinHotReloadDebuggerTimeoutExceptionKLRMobileiOSHideInfoBar="True" XamarinHotReloadGenericExceptionInfoBarKLRMobileiOSHideInfoBar="True" />
     </VisualStudio>
   </ProjectExtensions>
 </Project>
